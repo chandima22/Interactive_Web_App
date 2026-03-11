@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Events - EventMate</title>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <div class="main-wrapper">
+        <div class="noise-overlay"></div>
+        
+        <!-- Header -->
+        <header class="header glass">
+            <div class="header-inner container">
+                <div class="header-left">
+                    <a href="index.html" class="logo">
+                        <div class="logo-icon">
+                            <i data-lucide="sparkles"></i>
+                        </div>
+                        <span class="logo-text">EventMate</span>
+                    </a>
+                    <nav class="nav-links">
+                        <a href="index.html" class="nav-link">Home</a>
+                        <a href="events.html" class="nav-link active">Events</a>
+                        <a href="register.html" class="nav-link">Register</a>
+                        <a href="contact.html" class="nav-link">Contact</a>
+                    </nav>
+                </div>
+                <div class="header-right">
+                    <button class="icon-btn">
+                        <i data-lucide="bell"></i>
+                    </button>
+                    <a href="signup.html" class="icon-btn">
+                        <i data-lucide="user"></i>
+                    </a>
+                    <a href="signup.html" class="btn btn-primary header-cta">
+                        Get Started
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="page-header container">
+                <div class="hero-blobs">
+                    <div class="blob blob-1 animate-pulse" style="top: -10%; right: -10%;"></div>
+                    <div class="blob blob-2 animate-pulse delay-700" style="bottom: -10%; left: -10%;"></div>
+                </div>
+
+                <div class="page-header-content">
+                    <h1 class="page-title">
+                        Discover <span class="text-gradient">Events</span>
+                    </h1>
+                    <p class="page-desc">
+                        Explore a world of possibilities. From intimate workshops to massive festivals, find the experiences that move you.
+                    </p>
+                </div>
+                
+                <div class="search-box">
+                    <i data-lucide="search" class="search-icon"></i>
+                    <input type="text" placeholder="Search for events..." class="search-input" />
+                </div>
+            </div>
+
+            <div class="container section" style="padding-top: 2rem;">
+                <!-- Filters Bar -->
+                <div class="filter-bar glass">
+                    <div class="filter-tags">
+                        <button class="filter-tag active">All</button>
+                        <button class="filter-tag">Technology</button>
+                        <button class="filter-tag">Music</button>
+                        <button class="filter-tag">Arts</button>
+                        <button class="filter-tag">Food</button>
+                        <button class="filter-tag">Health</button>
+                        <button class="filter-tag">Business</button>
+                    </div>
+                    <div class="sort-control">
+                        <div style="width: 1px; height: 1.5rem; background-color: rgba(255,255,255,0.1);" class="hidden md-flex"></div>
+                        <button class="sort-btn">
+                            <i data-lucide="sliders-horizontal" style="width: 1rem; height: 1rem;"></i>
+                            Sort By
+                            <i data-lucide="chevron-down" style="width: 1rem; height: 1rem;"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Events Grid -->
+                <div class="events-grid-compact">
+                    <!-- Card 1 -->
+                    <div class="event-card-compact">
+                        <div class="event-img-compact">
+                            <img src="https://images.unsplash.com/photo-1540575861501-7ad05823c9f5?auto=format&fit=crop&q=80&w=800" alt="Global Tech Summit 2026" class="event-img" referrerpolicy="no-referrer" />
+                            <div class="event-overlay"></div>
+                            <span class="event-tag" style="font-size: 0.625rem;">Technology</span>
+                        </div>
+                        <h3 class="event-title-compact">Global Tech Summit 2026</h3>
+                        <div class="event-meta">
+                            <span>
+                                <i data-lucide="calendar" style="width: 1rem; height: 1rem; color: var(--color-brand-primary);"></i>
+                                Oct 15, 2026
+                            </span>
+                            <span>
+                                <i data-lucide="map-pin" style="width: 1rem; height: 1rem; color: var(--color-brand-primary);"></i>
+                                San Francisco, CA
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="event-card-compact">
+                        <div class="event-img-compact">
+                            <img src="https://images.unsplash.com/photo-1531058020387-3be344556be6?auto=format&fit=crop&q=80&w=800" alt="Modern Art Biennale" class="event-img" referrerpolicy="no-referrer" />
+                            <div class="event-overlay"></div>
+                            <span class="event-tag" style="font-size: 0.625rem;">Arts</span>
+                        </div>
+                        <h3 class="event-title-compact">Modern Art Biennale</h3>
+                        <div class="event-meta">
+                            <span>
+                                <i data-lucide="calendar" style="width: 1rem; height: 1rem; color: var(--color-brand-primary);"></i>
+                                Nov 02, 2026
+                            </span>
+                            <span>
+                                <i data-lucide="map-pin" style="width: 1rem; height: 1rem; color: var(--color-brand-primary);"></i>
+                                New York, NY
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="event-card-compact">
+                        <div class="event-img-compact">
+                            <img src="https://images.unsplash.com/photo-1459749411177-042180ce673c?auto=format&fit=crop&q=80&w=800" alt="Echoes Music Festival" class="event-img" referrerpolicy="no-referrer" />
+                            <div class="event-overlay"></div>
+                            <span class="event-tag" style="font-size: 0.625rem;">Music</span>
+                        </div>
+                        <h3 class="event-title-compact">Echoes Music Festival</h3>
+                        <div class="event-meta">
+                            <span>
+                                <i data-lucide="calendar" style="width: 1rem; height: 1rem; color: var(--color-brand-primary);"></i>
+                                Dec 12, 2026
+                            </span>
+                            <span>
+                                <i data-lucide="map-pin" style="width: 1rem; height: 1rem; color: var(--color-brand-primary);"></i>
+                                Austin, TX
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div class="event-card-compact">
+                        <div class="event-img-compact">
+                            <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&q=80&w=800" alt="Culinary Masters Expo" class="event-img" referrerpolicy="no-referrer" />
+                            <div class="event-overlay"></div>
+                            <span class="event-tag" style="font-size: 0.625rem;">Food</span>
+                        </div>
+                        <h3 class="event-title-compact">Culinary Masters Expo</h3>
+                        <div class="event-meta">
+                            <span>
+                                <i data-lucide="calendar" style="width: 1rem; height: 1rem; color: var(--color-brand-primary);"></i>
+                                Jan 20, 2027
+                            </span>
+                            <span>
+                                <i data-lucide="map-pin" style="width: 1rem; height: 1rem; color: var(--color-brand-primary);"></i>
+                                Chicago, IL
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Card 5 -->
+                    <div class="event-card-compact">
+                        <div class="event-img-compact">
+                            <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=800" alt="AI Innovation Workshop" class="event-img" referrerpolicy="no-referrer" />
+                            <div class="event-overlay"></div>
+                            <span class="event-tag" style="font-size: 0.625rem;">Technology</span>
+                        </div>
+                        <h3 class="event-title-compact">AI Innovation Workshop</h3>
+                        <div class="event-meta">
+                            <span>
+                                <i data-lucide="calendar" style="width: 1rem; height: 1rem; color: var(--color-brand-primary);"></i>
+                                Feb 10, 2027
+                            </span>
+                            <span>
+                                <i data-lucide="map-pin" style="width: 1rem; height: 1rem; color: var(--color-brand-primary);"></i>
+                                Seattle, WA
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Card 6 -->
+                    <div class="event-card-compact">
+                        <div class="event-img-compact">
+                            <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&q=80&w=800" alt="Zen Wellness Retreat" class="event-img" referrerpolicy="no-referrer" />
+                            <div class="event-overlay"></div>
+                            <span class="event-tag" style="font-size: 0.625rem;">Health</span>
+                        </div>
+                        <h3 class="event-title-compact">Zen Wellness Retreat</h3>
+                        <div class="event-meta">
+                            <span>
+                                <i data-lucide="calendar" style="width: 1rem; height: 1rem; color: var(--color-brand-primary);"></i>
+                                Mar 05, 2027
+                            </span>
+                            <span>
+                                <i data-lucide="map-pin" style="width: 1rem; height: 1rem; color: var(--color-brand-primary);"></i>
+                                Sedona, AZ
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Card 7 -->
+                    <div class="event-card-compact">
+                        <div class="event-img-compact">
+                            <img src="https://images.unsplash.com/photo-1515187029135-18ee286d815b?auto=format&fit=crop&q=80&w=800" alt="Future of SaaS Forum" class="event-img" referrerpolicy="no-referrer" />
+                            <div class="event-overlay"></div>
+                            <span class="event-tag" style="font-size: 0.625rem;">Business</span>
+                        </div>
+                        <h3 class="event-title-compact">Future of SaaS Forum</h3>
+                        <div class="event-meta">
+                            <span>
+                                <i data-lucide="calendar" style="width: 1rem; height: 1rem; color: var(--color-brand-primary);"></i>
+                                Apr 18, 2027
+                            </span>
+                            <span>
+                                <i data-lucide="map-pin" style="width: 1rem; height: 1rem; color: var(--color-brand-primary);"></i>
+                                Boston, MA
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Card 8 -->
+                    <div class="event-card-compact">
+                        <div class="event-img-compact">
+                            <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&q=80&w=800" alt="Indie Film Showcase" class="event-img" referrerpolicy="no-referrer" />
+                            <div class="event-overlay"></div>
+                            <span class="event-tag" style="font-size: 0.625rem;">Arts</span>
+                        </div>
+                        <h3 class="event-title-compact">Indie Film Showcase</h3>
+                        <div class="event-meta">
+                            <span>
+                                <i data-lucide="calendar" style="width: 1rem; height: 1rem; color: var(--color-brand-primary);"></i>
+                                May 22, 2027
+                            </span>
+                            <span>
+                                <i data-lucide="map-pin" style="width: 1rem; height: 1rem; color: var(--color-brand-primary);"></i>
+                                Los Angeles, CA
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Load More -->
+                <div class="load-more-container">
+                    <button class="btn btn-glass btn-lg btn-glow">
+                        Load More Events
+                    </button>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-about">
+                        <a href="index.html" class="footer-logo">
+                            <div class="footer-logo-icon">
+                                <i data-lucide="sparkles"></i>
+                            </div>
+                            <span class="footer-logo-text">EventMate</span>
+                        </a>
+                        <p class="footer-desc">
+                            Discover and manage extraordinary events with the most sophisticated platform for event organizers and attendees.
+                        </p>
+                        <div class="social-links">
+                            <a href="#" class="social-link btn-glass">
+                                <i data-lucide="facebook"></i>
+                            </a>
+                            <a href="#" class="social-link btn-glass">
+                                <i data-lucide="instagram"></i>
+                            </a>
+                            <a href="#" class="social-link btn-glass">
+                                <i data-lucide="linkedin"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="footer-heading">Platform</h4>
+                        <nav class="footer-nav">
+                            <a href="#">About Us</a>
+                            <a href="events.html">Discover Events</a>
+                            <a href="register.html">Register Now</a>
+                            <a href="contact.html">Contact Support</a>
+                        </nav>
+                    </div>
+                    <div>
+                        <h4 class="footer-heading">Legal</h4>
+                        <nav class="footer-nav">
+                            <a href="#">Privacy Policy</a>
+                            <a href="#">Terms of Service</a>
+                            <a href="#">Help Center</a>
+                        </nav>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <span>© 2026 EventMate. All rights reserved.</span>
+                    <div class="footer-bottom-right">
+                        <span>Built with Passion</span>
+                        <div class="footer-dot"></div>
+                        <span>San Francisco, CA</span>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
