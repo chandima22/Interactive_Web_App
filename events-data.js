@@ -3,99 +3,53 @@ const eventsData = [
     {
         id: "acad-1",
         category: "Academic",
-        title: "International Conference on Education Policy, Globalization and Poverty",
-        location: "Colombo",
+        title: "Career Guidence Seminar",
+        location: "CG Unit, Ananda College, Colombo 07",
         date: "20 March 2026",
         image: "https://images.unsplash.com/photo-1523050335392-9bef867a0578?auto=format&fit=crop&q=80&w=800"
     },
     {
         id: "acad-2",
         category: "Academic",
-        title: "International Conference on Circular Economy & Climate Change Mitigation",
-        location: "Colombo",
+        title: "Tech-Info Conference",
+        location: "SLTC, Padukka",
         date: "25 March 2026",
         image: "https://images.unsplash.com/photo-1536697246787-1f7ad502a472?auto=format&fit=crop&q=80&w=800"
     },
     {
         id: "acad-3",
         category: "Academic",
-        title: "International Conference on Smart Cities & Transportation Engineering",
-        location: "Colombo",
+        title: "Coding Hackathon",
+        location: "IIT, Colombo",
         date: "25 March 2026",
         image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&q=80&w=800"
     },
     {
         id: "acad-4",
         category: "Academic",
-        title: "International Conference on Bayesian Probability & Inference Methods",
-        location: "Colombo",
-        date: "25 March 2026",
+        title: "AI & Robotics Workshop",
+        location: "Moratuwa University",
+        date: "26 March 2026",
         image: "https://images.unsplash.com/photo-1509228468518-180dd482180c?auto=format&fit=crop&q=80&w=800"
     },
-    {
-        id: "acad-5",
-        category: "Academic",
-        title: "International Conference on Assessment and Evaluation in Curriculum Design",
-        location: "Colombo",
-        date: "25 March 2026",
-        image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&q=80&w=800"
-    },
-    {
-        id: "acad-6",
-        category: "Academic",
-        title: "International Conference on Work-Based Learning & Vocational Practices",
-        location: "Colombo",
-        date: "25 March 2026",
-        image: "https://images.unsplash.com/photo-1544650030-3c91ad0bcf22?auto=format&fit=crop&q=80&w=800"
-    },
-    {
-        id: "acad-7",
-        category: "Academic",
-        title: "22nd International Conference on Business Management",
-        location: "Nugegoda",
-        date: "2026 (annual conference)",
-        image: "https://images.unsplash.com/photo-1507679799987-c7377f0c6792?auto=format&fit=crop&q=80&w=800"
-    },
-    {
-        id: "acad-8",
-        category: "Academic",
-        title: "International Research Conference on Management & Finance",
-        location: "Colombo",
-        date: "27 November 2026",
-        image: "https://images.unsplash.com/photo-1454165833767-027ffea9e77b?auto=format&fit=crop&q=80&w=800"
-    },
-    {
-        id: "acad-9",
-        category: "Academic",
-        title: "Professional Event Management Training Program",
-        location: "Colombo",
-        date: "31 March 2026",
-        image: "https://images.unsplash.com/photo-1540575861501-7ad05823c9f5?auto=format&fit=crop&q=80&w=800"
-    },
-    {
-        id: "acad-10",
-        category: "Academic",
-        title: "International Conference on Sustainable Built Environment",
-        location: "Kandy – Earl’s Regency Hotel",
-        date: "11–12 December 2026",
-        image: "https://images.unsplash.com/photo-1466611653911-954f64267f24?auto=format&fit=crop&q=80&w=800"
-    },
+
+
 
     // 2. Cultural & Entertainment Events
     {
         id: "cult-1",
         category: "Cultural",
-        title: "Play Expo & Colombo Comic Expo",
-        location: "Colombo – SECC",
-        date: "10–11 January 2026",
+        title: "Sinhala & Tamil New Year Celebration-Hiru Tv",
+        location: "Thambuththegama National Stadium",
+        date: "15-04-2026",
         image: "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?auto=format&fit=crop&q=80&w=800"
     },
     {
         id: "cult-2",
         category: "Cultural",
         title: "Kandy Esala Perahera",
-        location: "Kandy",
-        date: "July–August annually",
+        location: "Queens Hotel-Kandy",
+        date: "10-08-2026",
         image: "https://images.unsplash.com/photo-1534441019183-5ec9622d95fc?auto=format&fit=crop&q=80&w=800"
     },
     {
@@ -103,17 +57,10 @@ const eventsData = [
         category: "Cultural",
         title: "Galle Literary Festival",
         location: "Galle Fort",
-        date: "January annually",
+        date: "15-05-2026",
         image: "https://images.unsplash.com/photo-1506880018603-83d5b814b5a6?auto=format&fit=crop&q=80&w=800"
     },
-    {
-        id: "cult-4",
-        category: "Cultural",
-        title: "Navam Perahera",
-        location: "Colombo – Gangaramaya",
-        date: "February annually",
-        image: "https://images.unsplash.com/photo-1574347717088-348243beea4d?auto=format&fit=crop&q=80&w=800"
-    },
+
     {
         id: "cult-5",
         category: "Cultural",
@@ -127,17 +74,10 @@ const eventsData = [
         category: "Cultural",
         title: "Kala Pola Art Festival",
         location: "Colombo",
-        date: "February annually",
+        date: "30-03-2026",
         image: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&q=80&w=800"
     },
-    {
-        id: "cult-7",
-        category: "Cultural",
-        title: "Duruthu Perahera",
-        location: "Kelaniya",
-        date: "January",
-        image: "https://images.unsplash.com/photo-1541011504104-aa2573d84f98?auto=format&fit=crop&q=80&w=800"
-    },
+
     {
         id: "cult-8",
         category: "Cultural",
@@ -146,30 +86,16 @@ const eventsData = [
         date: "April",
         image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=800"
     },
-    {
-        id: "cult-9",
-        category: "Cultural",
-        title: "Vesak Festival Sri Lanka",
-        location: "Islandwide",
-        date: "May",
-        image: "https://images.unsplash.com/photo-1540575861501-7ad05823c9f5?auto=format&fit=crop&q=80&w=800"
-    },
-    {
-        id: "cult-10",
-        category: "Cultural",
-        title: "Nallur Festival",
-        location: "Jaffna",
-        date: "August",
-        image: "https://images.unsplash.com/photo-1510002824700-1c944eb79815?auto=format&fit=crop&q=80&w=800"
-    },
+
+
 
     // 3. Sports Events
     {
         id: "spor-1",
         category: "Sports",
-        title: "International Surfing Championships",
-        location: "Arugam Bay",
-        date: "2026 (season event)",
+        title: "Inter-University Cricket Tournament",
+        location: "Rajarata University Of Sri Lanka",
+        date: "12-05-2026 ",
         image: "https://images.unsplash.com/photo-1502680390469-be75c86b636f?auto=format&fit=crop&q=80&w=800"
     },
     {
@@ -184,8 +110,8 @@ const eventsData = [
         id: "spor-3",
         category: "Sports",
         title: "Sri Lanka Open Chess Championship",
-        location: "Colombo",
-        date: "September 2026",
+        location: "Nalanda College,Colombo",
+        date: "15-05-2026",
         image: "https://images.unsplash.com/photo-1529692236671-f1f6e946a8b5?auto=format&fit=crop&q=80&w=800"
     },
     {
@@ -204,30 +130,7 @@ const eventsData = [
         date: "Feb–Mar 2026",
         image: "https://images.unsplash.com/photo-1531415074968-036ba1b575da?auto=format&fit=crop&q=80&w=800"
     },
-    {
-        id: "spor-6",
-        category: "Sports",
-        title: "Inter-University Games",
-        location: "Various universities",
-        date: "September",
-        image: "https://images.unsplash.com/photo-1511252810826-a6e74f4ad35a?auto=format&fit=crop&q=80&w=800"
-    },
-    {
-        id: "spor-7",
-        category: "Sports",
-        title: "National School Games Athletics",
-        location: "Sugathadasa Stadium",
-        date: "October",
-        image: "https://images.unsplash.com/photo-1533560904424-a0c61dc306fc?auto=format&fit=crop&q=80&w=800"
-    },
-    {
-        id: "spor-8",
-        category: "Sports",
-        title: "Sri Lanka Marathon",
-        location: "Colombo",
-        date: "October",
-        image: "https://images.unsplash.com/photo-1452626038306-9aae5e071dd3?auto=format&fit=crop&q=80&w=800"
-    },
+
     {
         id: "spor-9",
         category: "Sports",
@@ -275,7 +178,7 @@ const eventsData = [
         category: "Social",
         title: "Beach Cleaning Program",
         location: "Mt. Lavinia Beach",
-        date: "Monthly volunteer events",
+        date: "06-05-2026",
         image: "https://images.unsplash.com/photo-1532187863486-abf9d39d6618?auto=format&fit=crop&q=80&w=800"
     },
     {
