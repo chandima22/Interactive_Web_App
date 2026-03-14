@@ -8,6 +8,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const eventsGrid = document.querySelector('.events-grid-compact');
     const featuredGrid = document.querySelector('.events-grid'); // On index.html
     const filterButtons = document.querySelectorAll('.filter-tag');
+    const searchInput = document.querySelector('.search-input');
+
+    let currentCategory = 'All';
+    let currentSearch = '';
 
     function createEventCard(event, isCompact = true) {
         if (isCompact) {
@@ -32,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 </div>
             `;
         } else {
-            // Main style for Featured Events on indext.html
+            // Main style for Featured Events on index.html
             return `
                 <div class="event-card">
                     <div class="event-img-wrapper">
@@ -60,17 +64,30 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    function renderEvents(filter = 'All') {
+    function renderEvents() {
         if (!eventsGrid || !window.eventsData) return;
         
         eventsGrid.innerHTML = '';
-        const filtered = filter === 'All' 
-            ? window.eventsData 
-            : window.eventsData.filter(e => e.category === filter);
         
-        filtered.forEach(event => {
-            eventsGrid.innerHTML += createEventCard(event, true);
+        const filtered = window.eventsData.filter(event => {
+            const matchesCategory = currentCategory === 'All' || event.category === currentCategory;
+            const matchesSearch = event.title.toLowerCase().includes(currentSearch.toLowerCase()) || 
+                                event.location.toLowerCase().includes(currentSearch.toLowerCase());
+            return matchesCategory && matchesSearch;
         });
+        
+        if (filtered.length === 0) {
+            eventsGrid.innerHTML = `
+                <div style="grid-column: 1/-1; text-align: center; padding: 4rem 2rem; color: rgba(255,255,255,0.5);">
+                    <i data-lucide="search-x" style="width: 3rem; height: 3rem; margin-bottom: 1rem; display: block; margin-inline: auto;"></i>
+                    <p style="font-size: 1.125rem;">No events found matching "${currentSearch}"</p>
+                </div>
+            `;
+        } else {
+            filtered.forEach(event => {
+                eventsGrid.innerHTML += createEventCard(event, true);
+            });
+        }
         
         // Re-create icons for new elements
         if (typeof lucide !== 'undefined') {
@@ -102,8 +119,17 @@ document.addEventListener("DOMContentLoaded", () => {
             btn.addEventListener('click', () => {
                 filterButtons.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
-                renderEvents(btn.textContent);
+                currentCategory = btn.textContent;
+                renderEvents();
             });
+        });
+    }
+
+    // Event Listener for Search
+    if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+            currentSearch = e.target.value;
+            renderEvents();
         });
     }
 

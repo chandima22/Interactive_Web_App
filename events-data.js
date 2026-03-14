@@ -6,15 +6,15 @@ const eventsData = [
         title: "International Conference on Education Policy, Globalization and Poverty",
         location: "Colombo",
         date: "20 March 2026",
-        image: "https://images.unsplash.com/photo-1523050335392-9bef867a0578?auto=format&fit=crop&q=80&w=800"
+        image: "https://69b5b39dd7351016cf21d281.imgix.net/eventmate/lecture.jpeg?w=4480&h=2016"
     },
     {
         id: "acad-2",
         category: "Academic",
-        title: "International Conference on Circular Economy & Climate Change Mitigation",
-        location: "Colombo",
+        title: "Career Fair CODE GEN",
+        location: "University of Kalaniya",
         date: "25 March 2026",
-        image: "https://images.unsplash.com/photo-1536697246787-1f7ad502a472?auto=format&fit=crop&q=80&w=800"
+        image: "https://69b5b39dd7351016cf21d281.imgix.net/eventmate/career%20fair%20code%20gen.jpg?w=4593&h=2844"
     },
     {
         id: "acad-3",
@@ -27,10 +27,10 @@ const eventsData = [
     {
         id: "acad-4",
         category: "Academic",
-        title: "International Conference on Bayesian Probability & Inference Methods",
+        title: "JOB Fair",
         location: "Colombo",
         date: "25 March 2026",
-        image: "https://images.unsplash.com/photo-1509228468518-180dd482180c?auto=format&fit=crop&q=80&w=800"
+        image: "https://69b5b39dd7351016cf21d281.imgix.net/eventmate/job%20fair.jpg?w=810&h=523"
     },
     {
         id: "acad-5",
@@ -38,7 +38,7 @@ const eventsData = [
         title: "International Conference on Assessment and Evaluation in Curriculum Design",
         location: "Colombo",
         date: "25 March 2026",
-        image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&q=80&w=800"
+        image: "https://69b5b39dd7351016cf21d281.imgix.net/eventmate/meetings.jpg?w=1200&h=800"
     },
     {
         id: "acad-6",
@@ -46,7 +46,7 @@ const eventsData = [
         title: "International Conference on Work-Based Learning & Vocational Practices",
         location: "Colombo",
         date: "25 March 2026",
-        image: "https://images.unsplash.com/photo-1544650030-3c91ad0bcf22?auto=format&fit=crop&q=80&w=800"
+        image: "https://69b5b39dd7351016cf21d281.imgix.net/eventmate/career%20fair.jpg?w=5330&h=3553"
     },
     {
         id: "acad-7",
@@ -54,7 +54,7 @@ const eventsData = [
         title: "22nd International Conference on Business Management",
         location: "Nugegoda",
         date: "2026 (annual conference)",
-        image: "https://images.unsplash.com/photo-1507679799987-c7377f0c6792?auto=format&fit=crop&q=80&w=800"
+        image: "https://69b5b39dd7351016cf21d281.imgix.net/eventmate/conference.jpg?w=2048&h=1365"
     },
     {
         id: "acad-8",
@@ -62,7 +62,7 @@ const eventsData = [
         title: "International Research Conference on Management & Finance",
         location: "Colombo",
         date: "27 November 2026",
-        image: "https://images.unsplash.com/photo-1454165833767-027ffea9e77b?auto=format&fit=crop&q=80&w=800"
+        image: "https://69b5b39dd7351016cf21d281.imgix.net/confarance1.jpg?w=960&h=539&ar=960%3A539"
     },
     {
         id: "acad-9",
@@ -75,10 +75,10 @@ const eventsData = [
     {
         id: "acad-10",
         category: "Academic",
-        title: "International Conference on Sustainable Built Environment",
+        title: "SLASSCOME Profectional Skills Workshop",
         location: "Kandy – Earl’s Regency Hotel",
         date: "11–12 December 2026",
-        image: "https://images.unsplash.com/photo-1466611653911-954f64267f24?auto=format&fit=crop&q=80&w=800"
+        image: "https://69b5b39dd7351016cf21d281.imgix.net/eventmate/SLASSCOM-Workshop.jpeg?w=782&h=784"
     },
 
     // 2. Cultural & Entertainment Events
@@ -88,7 +88,7 @@ const eventsData = [
         title: "Play Expo & Colombo Comic Expo",
         location: "Colombo – SECC",
         date: "10–11 January 2026",
-        image: "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?auto=format&fit=crop&q=80&w=800"
+        image: "https://69b5b39dd7351016cf21d281.imgix.net/eventmate/comic.jpg?w=600&h=338"
     },
     {
         id: "cult-2",
@@ -96,7 +96,7 @@ const eventsData = [
         title: "Kandy Esala Perahera",
         location: "Kandy",
         date: "July–August annually",
-        image: "https://images.unsplash.com/photo-1534441019183-5ec9622d95fc?auto=format&fit=crop&q=80&w=800"
+        image: "https://69b5b39dd7351016cf21d281.imgix.net/eventmate/esala%20perahera.jpg?w=1024&h=1024"
     },
     {
         id: "cult-3",
@@ -133,10 +133,10 @@ const eventsData = [
     {
         id: "cult-7",
         category: "Cultural",
-        title: "Duruthu Perahera",
+        title: "Music Festival",
         location: "Kelaniya",
         date: "January",
-        image: "https://images.unsplash.com/photo-1541011504104-aa2573d84f98?auto=format&fit=crop&q=80&w=800"
+        image: "https://69b5b39dd7351016cf21d281.imgix.net/eventmate/music%20concert.jpg?w=600&h=400"
     },
     {
         id: "cult-8",
@@ -186,7 +186,7 @@ const eventsData = [
         title: "Sri Lanka Open Chess Championship",
         location: "Colombo",
         date: "September 2026",
-        image: "https://images.unsplash.com/photo-1529692236671-f1f6e946a8b5?auto=format&fit=crop&q=80&w=800"
+        image: "https://69b5b39dd7351016cf21d281.imgix.net/WhatsApp%20Image%202026-03-15%20at%2001.30.02.jpeg?w=736&h=1308&ar=736%3A1308"
     },
     {
         id: "spor-4",
@@ -202,7 +202,7 @@ const eventsData = [
         title: "ICC Men's T20 World Cup 2026",
         location: "Colombo & Kandy",
         date: "Feb–Mar 2026",
-        image: "https://images.unsplash.com/photo-1531415074968-036ba1b575da?auto=format&fit=crop&q=80&w=800"
+        image: "https://69b5b39dd7351016cf21d281.imgix.net/eventmate/cricket.avif?w=480&h=360"
     },
     {
         id: "spor-6",
@@ -223,18 +223,18 @@ const eventsData = [
     {
         id: "spor-8",
         category: "Sports",
-        title: "Sri Lanka Marathon",
+        title: "Colombo Marathon",
         location: "Colombo",
         date: "October",
-        image: "https://images.unsplash.com/photo-1452626038306-9aae5e071dd3?auto=format&fit=crop&q=80&w=800"
+        image: "https://69b5b39dd7351016cf21d281.imgix.net/eventmate/marathon.jpg?w=1440&h=958"
     },
     {
         id: "spor-9",
         category: "Sports",
-        title: "Dialog Schools Rugby League",
-        location: "Islandwide schools",
+        title: "SLT Esport King",
+        location: "Islandwide Online",
         date: "June–August",
-        image: "https://images.unsplash.com/photo-1511941055141-443653146f90?auto=format&fit=crop&q=80&w=800"
+        image: "https://69b5b39dd7351016cf21d281.imgix.net/eventmate/gaming.jpg?w=1000&h=764"
     },
     {
         id: "spor-10",
@@ -252,7 +252,7 @@ const eventsData = [
         title: "World Blood Donor Day Campaign",
         location: "National Blood Service",
         date: "14 June annually",
-        image: "https://images.unsplash.com/photo-1615461066841-6116ecaaba30?auto=format&fit=crop&q=80&w=800"
+        image: "https://69b5b39dd7351016cf21d281.imgix.net/eventmate/blood%20donation.jpg?w=700&h=441"
     },
     {
         id: "soci-2",
@@ -265,10 +265,10 @@ const eventsData = [
     {
         id: "soci-3",
         category: "Social",
-        title: "International Coastal Cleanup",
-        location: "Negombo & Mt. Lavinia",
+        title: "Cleaning up around coral reefs",
+        location: "Hikkaduwa",
         date: "September",
-        image: "https://images.unsplash.com/photo-1618477461853-cf6ed80fbaa5?auto=format&fit=crop&q=80&w=800"
+        image: "https://69b5b39dd7351016cf21d281.imgix.net/eventmate/beach%20cleanup.jpg?w=1024&h=683"
     },
     {
         id: "soci-4",
@@ -276,7 +276,7 @@ const eventsData = [
         title: "Beach Cleaning Program",
         location: "Mt. Lavinia Beach",
         date: "Monthly volunteer events",
-        image: "https://images.unsplash.com/photo-1532187863486-abf9d39d6618?auto=format&fit=crop&q=80&w=800"
+        image: "https://69b5b39dd7351016cf21d281.imgix.net/eventmate/beach%20clean.jpg?w=500&h=333"
     },
     {
         id: "soci-5",
