@@ -3,8 +3,8 @@ const eventsData = [
     {
         id: "acad-1",
         category: "Academic",
-        title: "International Conference on Education Policy, Globalization and Poverty",
-        location: "Colombo",
+        title: "Career Guidence Seminar",
+        location: "CG Unit, Ananda College, Colombo 07",
         date: "20 March 2026",
         image: "https://69b5b39dd7351016cf21d281.imgix.net/eventmate/lecture.jpeg?w=4480&h=2016"
     },
@@ -19,8 +19,8 @@ const eventsData = [
     {
         id: "acad-3",
         category: "Academic",
-        title: "International Conference on Smart Cities & Transportation Engineering",
-        location: "Colombo",
+        title: "Coding Hackathon",
+        location: "IIT, Colombo",
         date: "25 March 2026",
         image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&q=80&w=800"
     },
@@ -103,16 +103,8 @@ const eventsData = [
         category: "Cultural",
         title: "Galle Literary Festival",
         location: "Galle Fort",
-        date: "January annually",
+        date: "15-05-2026",
         image: "https://images.unsplash.com/photo-1506880018603-83d5b814b5a6?auto=format&fit=crop&q=80&w=800"
-    },
-    {
-        id: "cult-4",
-        category: "Cultural",
-        title: "Navam Perahera",
-        location: "Colombo – Gangaramaya",
-        date: "February annually",
-        image: "https://images.unsplash.com/photo-1574347717088-348243beea4d?auto=format&fit=crop&q=80&w=800"
     },
     {
         id: "cult-5",
@@ -127,7 +119,7 @@ const eventsData = [
         category: "Cultural",
         title: "Kala Pola Art Festival",
         location: "Colombo",
-        date: "February annually",
+        date: "30-03-2026",
         image: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&q=80&w=800"
     },
     {
@@ -146,30 +138,14 @@ const eventsData = [
         date: "April",
         image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=800"
     },
-    {
-        id: "cult-9",
-        category: "Cultural",
-        title: "Vesak Festival Sri Lanka",
-        location: "Islandwide",
-        date: "May",
-        image: "https://images.unsplash.com/photo-1540575861501-7ad05823c9f5?auto=format&fit=crop&q=80&w=800"
-    },
-    {
-        id: "cult-10",
-        category: "Cultural",
-        title: "Nallur Festival",
-        location: "Jaffna",
-        date: "August",
-        image: "https://images.unsplash.com/photo-1510002824700-1c944eb79815?auto=format&fit=crop&q=80&w=800"
-    },
 
     // 3. Sports Events
     {
         id: "spor-1",
         category: "Sports",
-        title: "International Surfing Championships",
-        location: "Arugam Bay",
-        date: "2026 (season event)",
+        title: "Inter-University Cricket Tournament",
+        location: "Rajarata University Of Sri Lanka",
+        date: "12-05-2026 ",
         image: "https://images.unsplash.com/photo-1502680390469-be75c86b636f?auto=format&fit=crop&q=80&w=800"
     },
     {
