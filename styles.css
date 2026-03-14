@@ -4,10 +4,10 @@
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Outfit", sans-serif;
   --font-mono: "Space Grotesk", monospace;
-  --color-brand-primary: #6F1E3F; /* Deep Burgundy */
-  --color-brand-secondary: #EDC988; /* Soft Gold */
-  --color-bg-dark: #0F090B; /* Deep Warm Black */
-  --color-surface: #1C1115; /* Warm Surface */
+  --color-brand-primary: #8B5CF6;
+  --color-brand-secondary: #10B981;
+  --color-bg-dark: #050505;
+  --color-surface: #121212;
 }
 
 * {
@@ -27,7 +27,7 @@ body {
 }
 
 ::selection {
-  background-color: rgba(111, 30, 63, 0.4);
+  background-color: rgba(139, 92, 246, 0.3);
 }
 
 a {
@@ -73,10 +73,10 @@ textarea {
 
 .mesh-bg {
   background-image:
-    radial-gradient(at 0% 0%, rgba(111, 30, 63, 0.2) 0px, transparent 50%),
-    radial-gradient(at 100% 0%, rgba(237, 201, 136, 0.15) 0px, transparent 50%),
-    radial-gradient(at 100% 100%, rgba(111, 30, 63, 0.15) 0px, transparent 50%),
-    radial-gradient(at 0% 100%, rgba(237, 201, 136, 0.2) 0px, transparent 50%);
+    radial-gradient(at 0% 0%, rgba(139, 92, 246, 0.15) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(16, 185, 129, 0.1) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(139, 92, 246, 0.1) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, rgba(16, 185, 129, 0.15) 0px, transparent 50%);
 }
 
 .noise-overlay {
@@ -244,7 +244,7 @@ textarea {
 }
 
 .btn-glow:hover {
-  box-shadow: 0 0 30px rgba(111, 30, 63, 0.4);
+  box-shadow: 0 0 30px rgba(139, 92, 246, 0.3);
 }
 
 /* Header */
@@ -287,7 +287,7 @@ textarea {
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 10px 15px -3px rgba(111, 30, 63, 0.2);
+  box-shadow: 0 10px 15px -3px rgba(139, 92, 246, 0.2);
   transition: transform 0.3s;
 }
 
@@ -391,7 +391,7 @@ textarea {
   width: 24rem;
   height: 24rem;
   border-radius: 50%;
-  background-color: rgba(111, 30, 63, 0.3);
+  background-color: rgba(139, 92, 246, 0.2);
   filter: blur(120px);
 }
 
@@ -402,7 +402,7 @@ textarea {
   width: 24rem;
   height: 24rem;
   border-radius: 50%;
-  background-color: rgba(237, 201, 136, 0.2);
+  background-color: rgba(16, 185, 129, 0.1);
   filter: blur(120px);
 }
 
@@ -413,7 +413,7 @@ textarea {
   width: 30%;
   height: 30%;
   border-radius: 50%;
-  background-color: rgba(111, 30, 63, 0.2);
+  background-color: rgba(139, 92, 246, 0.1);
   filter: blur(100px);
 }
 
@@ -523,7 +523,7 @@ textarea {
 .stat-icon {
   width: 3.5rem;
   height: 3.5rem;
-  background-color: rgba(111, 30, 63, 0.1);
+  background-color: rgba(139, 92, 246, 0.1);
   border-radius: 1rem;
   display: flex;
   align-items: center;
@@ -1183,7 +1183,7 @@ textarea {
 .contact-icon {
   width: 2.5rem;
   height: 2.5rem;
-  background-color: rgba(111, 30, 63, 0.1);
+  background-color: rgba(139, 92, 246, 0.1);
   border-radius: 0.75rem;
   display: flex;
   align-items: center;
@@ -1233,7 +1233,7 @@ textarea {
 .form-header-icon {
   width: 2.5rem;
   height: 2.5rem;
-  background-color: rgba(237, 201, 136, 0.1);
+  background-color: rgba(16, 185, 129, 0.1);
   border-radius: 0.75rem;
   display: flex;
   align-items: center;
@@ -1289,8 +1289,8 @@ textarea {
 
 .form-control:focus {
   outline: none;
-  border-color: rgba(111, 30, 63, 0.5);
-  box-shadow: 0 0 0 2px rgba(111, 30, 63, 0.5);
+  border-color: rgba(139, 92, 246, 0.5);
+  box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.5);
 }
 
 .form-control-icon-wrap {
@@ -1342,7 +1342,7 @@ textarea {
   gap: 1rem;
   padding: 1.5rem;
   background-color: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(111, 30, 63, 0.3);
+  border: 1px solid rgba(139, 92, 246, 0.2);
   border-radius: 1rem;
   margin-bottom: 2rem;
 }
@@ -1416,7 +1416,7 @@ textarea {
   width: 1.5rem;
   height: 1.5rem;
   border-radius: 50%;
-  background-color: rgba(111, 30, 63, 0.2);
+  background-color: rgba(139, 92, 246, 0.2);
   display: flex;
   align-items: center;
   justify-content: center;
