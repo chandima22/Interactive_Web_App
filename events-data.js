@@ -70,7 +70,7 @@ const eventsData = [
         title: "Professional Event Management Training Program",
         location: "Colombo",
         date: "31 March 2026",
-        image: "https://images.unsplash.com/photo-1540575861501-7ad05823c9f5?auto=format&fit=crop&q=80&w=800"
+        image: "https://69b5b39dd7351016cf21d281.imgix.net/1719716139702.jpg?w=800&h=600"
     },
     {
         id: "acad-10",
@@ -112,7 +112,7 @@ const eventsData = [
         title: "Colombo International Book Fair",
         location: "BMICH, Colombo",
         date: "September annually",
-        image: "https://images.unsplash.com/photo-1524334228333-0f6db392f8a1?auto=format&fit=crop&q=80&w=800"
+        image: "https://69b5b39dd7351016cf21d281.imgix.net/639031a313ba6-Delhi%20Book%20Fair%20Tours.jpg?w=1920&h=1080"
     },
     {
         id: "cult-6",
@@ -154,7 +154,7 @@ const eventsData = [
         title: "Champion Track & Field Meet",
         location: "Colombo",
         date: "28–29 March 2026",
-        image: "https://images.unsplash.com/photo-1526676037777-05a232554f77?auto=format&fit=crop&q=80&w=800"
+        image: "https://69b5b39dd7351016cf21d281.imgix.net/image_c5f92b4ee1.jpg?w=800&h=600"
     },
     {
         id: "spor-3",
@@ -186,15 +186,15 @@ const eventsData = [
         title: "Inter-University Games",
         location: "Various universities",
         date: "September",
-        image: "https://images.unsplash.com/photo-1511252810826-a6e74f4ad35a?auto=format&fit=crop&q=80&w=800"
+        image: "https://69b5b39dd7351016cf21d281.imgix.net/Inter-University-Championship-20-1024x683.jpg?w=1024&h=683"
     },
     {
         id: "spor-7",
         category: "Sports",
-        title: "National School Games Athletics",
+        title: "National School Games",
         location: "Sugathadasa Stadium",
         date: "October",
-        image: "https://images.unsplash.com/photo-1533560904424-a0c61dc306fc?auto=format&fit=crop&q=80&w=800"
+        image: "https://69b5b39dd7351016cf21d281.imgix.net/NATIONAL%20SCHOOL%20GAMES%202025%20-%20Square%20(1).webp?w=1080&h=1080"
     },
     {
         id: "spor-8",
@@ -260,7 +260,7 @@ const eventsData = [
         title: "Tree Planting Program",
         location: "Various districts",
         date: "June–July",
-        image: "https://images.unsplash.com/photo-1542601906990-b4d3fb773b09?auto=format&fit=crop&q=80&w=800"
+        image: "https://69b5b39dd7351016cf21d281.imgix.net/banner-tp_0.jpg?w=1143&h=925"
     },
 
     // 5. Business & Professional
@@ -302,7 +302,7 @@ const eventsData = [
         title: "Enterprise Risk Management Seminar",
         location: "Colombo",
         date: "12 March 2026",
-        image: "https://images.unsplash.com/photo-1507679799987-c7377f0c6792?auto=format&fit=crop&q=80&w=800"
+        image: "https://69b5b39dd7351016cf21d281.imgix.net/1725423594814.jpg?w=800&h=450"
     }
 ];
 
