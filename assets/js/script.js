@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function createEventCard(event, isCompact = true) {
         if (isCompact) {
             return `
-                <div class="event-card-compact" data-category="${event.category}">
+                <a href="register.html?event=${event.id}" class="event-card-compact" data-category="${event.category}" style="display: block;">
                     <div class="event-img-compact">
                         <img src="${event.image}" alt="${event.title}" class="event-img" referrerpolicy="no-referrer" />
                         <div class="event-overlay"></div>
@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             ${event.location}
                         </span>
                     </div>
-                </div>
+                </a>
             `;
         } else {
             // Main style for Featured Events on index.html
@@ -55,9 +55,9 @@ document.addEventListener("DOMContentLoaded", () => {
                             <i data-lucide="map-pin"></i>
                             <span>${event.location}</span>
                         </div>
-                        <button class="event-action glass">
+                        <a href="register.html?event=${event.id}" class="event-action glass">
                             <i data-lucide="arrow-up-right"></i>
-                        </button>
+                        </a>
                     </div>
                 </div>
             `;
@@ -137,6 +137,54 @@ document.addEventListener("DOMContentLoaded", () => {
     if (window.eventsData) {
         renderEvents();
         renderFeaturedEvents();
+    }
+
+    // --- Register Page Logic ---
+    const eventSelect = document.getElementById('event-select');
+    const registerImage = document.getElementById('register-event-image');
+    
+    if (eventSelect && registerImage && window.eventsData) {
+        // Populate select
+        eventSelect.innerHTML = '<option value="">Select an event</option>';
+        window.eventsData.forEach(event => {
+            const option = document.createElement('option');
+            option.value = event.id;
+            option.textContent = event.title;
+            eventSelect.appendChild(option);
+        });
+
+        // Parse URL params
+        const urlParams = new URLSearchParams(window.location.search);
+        const eventIdFromUrl = urlParams.get('event');
+        
+        function updateRegisterImage(eventId) {
+            if (!eventId) {
+                registerImage.style.opacity = 0;
+                setTimeout(() => {
+                    registerImage.src = 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&q=80&w=800'; // default image
+                    registerImage.style.opacity = 1;
+                }, 300);
+                return;
+            }
+            const selectedEvent = window.eventsData.find(e => e.id === eventId);
+            if (selectedEvent) {
+                // Add a smooth fade transition effect
+                registerImage.style.opacity = 0;
+                setTimeout(() => {
+                    registerImage.src = selectedEvent.image;
+                    registerImage.style.opacity = 1;
+                }, 300);
+            }
+        }
+
+        if (eventIdFromUrl) {
+            eventSelect.value = eventIdFromUrl;
+            updateRegisterImage(eventIdFromUrl);
+        }
+
+        eventSelect.addEventListener('change', (e) => {
+            updateRegisterImage(e.target.value);
+        });
     }
 
     // --- Original Nav Logic ---

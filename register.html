@@ -8,6 +8,7 @@
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="stylesheet" href="assets/css/styles.css" />
+    <script src="assets/js/events-data.js"></script>
 </head>
 
 <body>
@@ -76,12 +77,9 @@
                             <div class="form-group">
                                 <label class="form-label">Select Event</label>
                                 <div class="form-select-wrap">
-                                    <select class="form-control form-select">
-                                        <option>Select an event</option>
-                                        <option>Global Tech Summit 2026</option>
-                                        <option>Modern Art Biennale</option>
-                                        <option>Echoes Music Festival</option>
-                                        <option>Culinary Masters Expo</option>
+                                    <select class="form-control form-select" id="event-select" name="eventId" required>
+                                        <option value="">Select an event</option>
+                                        <!-- Options populated via script.js -->
                                     </select>
                                     <i data-lucide="chevron-down" class="form-select-icon"
                                         style="width: 1.25rem; height: 1.25rem;"></i>
@@ -112,8 +110,8 @@
 
                     <div class="side-image hidden lg-block">
                         <div class="side-image-inner">
-                            <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&q=80&w=800"
-                                alt="Event Registration" class="side-image-img" referrerpolicy="no-referrer" />
+                            <img id="register-event-image" src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&q=80&w=800"
+                                alt="Event Registration" class="side-image-img" referrerpolicy="no-referrer" style="transition: opacity 0.3s ease;" />
                             <div class="side-image-overlay"></div>
                             <div class="side-image-content">
                                 <div class="glass p-6 rounded-3xl" style="padding: 2rem; border-radius: 1.5rem;">
@@ -168,7 +166,6 @@
                     <div class="footer-bottom-right">
                         <span>Built with Passion</span>
                         <div class="footer-dot"></div>
-                        <span>San Francisco, CA</span>
                     </div>
                 </div>
             </div>

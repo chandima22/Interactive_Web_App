@@ -446,7 +446,7 @@ textarea {
 }
 
 .hero-title {
-  font-size: 3rem;
+  font-size: 1rem;
   font-weight: 800;
   margin-bottom: 1.5rem;
   letter-spacing: -0.05em;
@@ -1466,12 +1466,14 @@ textarea {
 
 /* Info Section Styles */
 .info-section {
-  padding: 8rem 0; /* Matched to site-wide .section padding */
+  padding: 8rem 0;
+  /* Matched to site-wide .section padding */
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .info-section:first-of-type {
-  padding-top: 10rem; /* Extra padding to account for sticky header and match hero feel */
+  padding-top: 10rem;
+  /* Extra padding to account for sticky header and match hero feel */
 }
 
 .info-section:last-child {
@@ -1479,7 +1481,8 @@ textarea {
 }
 
 .info-title {
-  font-size: 3.75rem; /* Matched to .page-title size */
+  font-size: 3.75rem;
+  /* Matched to .page-title size */
   font-weight: 800;
   margin-bottom: 2rem;
   letter-spacing: -0.05em;
@@ -1489,7 +1492,8 @@ textarea {
   color: rgba(255, 255, 255, 0.7);
   line-height: 1.8;
   font-size: 1.125rem;
-  max-width: 42rem; /* Sync with site-wide .section-desc max-width */
+  max-width: 42rem;
+  /* Sync with site-wide .section-desc max-width */
 }
 
 .info-grid {
