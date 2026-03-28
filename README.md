@@ -25,6 +25,7 @@ This project has been successfully migrated from a static HTML/JS frontend into 
 - Root Files:
   - `index.php`, `events.php`, `register.php`, `contact.php`, `info.php`, `dashboard.php`, `login.php`, `signup.php`, `database.sql`
 
+<<<<<<< HEAD
 ## How to Run Locally with XAMPP/WAMP
 1. Ensure your local server environment (XAMPP/WAMP/MAMP) is active. Place this entire folder directly inside your `htdocs` or `www` directory.
 2. Start the **Apache** and **MySQL** services from the control panel.
@@ -39,3 +40,18 @@ Default connection assumed in `includes/db.php`:
 
 ## Built By
 Antigravity Agent
+=======
+## How to Run with XAMPP / WAMP
+1. Copy the project folder into `htdocs` (XAMPP) or `www` (WAMP).
+2. Start **Apache** and **MySQL**.
+3. Open **phpMyAdmin**.
+4. Create a database named `eventmate_db` or simply import `database.sql` which will create it for you.
+5. Import the `database.sql` file.
+6. Open the project in the browser:
+   - `http://localhost/eventmate_phase3/`
+7. Default DB settings in `includes/db.php` are:
+   - host: `localhost`
+   - username: `root`
+   - password: empty string
+   - database: `eventmate_db`
+>>>>>>> f6d44086271a56887cdbb748b598a94b958351b7
