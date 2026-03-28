@@ -1,10 +1,16 @@
+<?php
+require_once 'includes/functions.php';
+if (is_logged_in()) {
+    redirect('dashboard.php');
+}
+?>
 <!doctype html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sign In - EventMate</title>
+    <title>Sign Up - EventMate</title>
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="stylesheet" href="assets/css/styles.css" />
@@ -18,29 +24,35 @@
         <header class="header glass">
             <div class="header-inner container">
                 <div class="header-left">
-                    <a href="index.html" class="logo">
+                    <a href="index.php" class="logo">
                         <div class="logo-icon">
                             <img src="assets/images/Logo.png" alt="Logo">
                         </div>
                         <span class="logo-text">EventMate</span>
                     </a>
                     <nav class="nav-links">
-                        <a href="index.html" class="nav-link">Home</a>
-                        <a href="events.html" class="nav-link">Events</a>
-                        <a href="register.html" class="nav-link">Register</a>
-                        <a href="contact.html" class="nav-link">Contact</a>
+                        <a href="index.php" class="nav-link">Home</a>
+                        <a href="events.php" class="nav-link">Events</a>
+                        <a href="register.php" class="nav-link">Register</a>
+                        <a href="contact.php" class="nav-link">Contact</a>
                     </nav>
                 </div>
                 <div class="header-right">
-                    <button class="icon-btn">
-                        <i data-lucide="bell"></i>
-                    </button>
-                    <a href="login.html" class="icon-btn" style="color: var(--color-brand-primary);">
-                        <i data-lucide="user"></i>
-                    </a>
-                    <a href="signup.html" class="btn btn-primary header-cta">
-                        Get Started
-                    </a>
+                    <?php if (is_logged_in()): ?>
+                        <a href="dashboard.php" class="icon-btn">
+                            <i data-lucide="layout-dashboard"></i>
+                        </a>
+                        <a href="auth/logout.php" class="btn btn-primary header-cta" style="background: rgba(255, 255, 255, 0.1); border-color: rgba(255, 255, 255, 0.1);">
+                            Log Out
+                        </a>
+                    <?php else: ?>
+                        <a href="login.php" class="icon-btn">
+                            <i data-lucide="user"></i>
+                        </a>
+                        <a href="signup.php" class="btn btn-primary header-cta">
+                            Get Started
+                        </a>
+                    <?php endif; ?>
                 </div>
             </div>
         </header>
@@ -56,12 +68,13 @@
                 <div class="auth-grid">
                     <div>
                         <h1 class="auth-title">
-                            Welcome <span class="text-gradient">Back</span>.
-                        </h1>
+                            Join the <span class="text-gradient">Elite</span> <br />
+                            Event Community.
+                        </h1><br><br>
                         <p class="auth-desc">
-                            Sign in to your EventMate account to manage your bookings, discover new experiences, and
-                            access your tickets.
-                        </p>
+                            Create an account to unlock exclusive access to VIP tickets, early-bird notifications, and
+                            personalized event recommendations.
+                        </p><br><br>
 
                         <div class="auth-features">
                             <div class="auth-feature">
@@ -100,15 +113,30 @@
                         </div>
 
                         <div style="position: relative; z-index: 10;">
-                            <h2 style="font-size: 1.875rem; font-weight: 700; margin-bottom: 2.5rem;">Sign In</h2>
+                            <h2 style="font-size: 1.875rem; font-weight: 700; margin-bottom: 2.5rem;">Create Account
+                            </h2>
 
-                            <form>
+                            <?php
+                            if (isset($_SESSION['error'])) {
+                                echo '<div style="background: rgba(239, 68, 68, 0.2); color: #fca5a5; padding: 1rem; border-radius: 0.75rem; border: 1px solid rgba(239, 68, 68, 0.3); margin-bottom: 1.5rem; text-align: center; font-size: 0.875rem;">' . $_SESSION['error'] . '</div>';
+                                unset($_SESSION['error']);
+                            }
+                            ?>
+                            <form action="auth/register_handler.php" method="POST">
+                                <div class="form-group">
+                                    <label class="form-label">Username</label>
+                                    <div class="form-control-icon-wrap">
+                                        <i data-lucide="user" class="form-control-icon"></i>
+                                        <input type="text" name="username" placeholder="johndoe" class="form-control form-control-with-icon" required />
+                                    </div>
+                                </div>
+
                                 <div class="form-group">
                                     <label class="form-label">Email Address</label>
                                     <div class="form-control-icon-wrap">
                                         <i data-lucide="mail" class="form-control-icon"></i>
-                                        <input type="email" placeholder="jane@example.com"
-                                            class="form-control form-control-with-icon" />
+                                        <input type="email" name="email" placeholder="jane@example.com"
+                                            class="form-control form-control-with-icon" required />
                                     </div>
                                 </div>
 
@@ -116,21 +144,21 @@
                                     <label class="form-label">Password</label>
                                     <div class="form-control-icon-wrap">
                                         <i data-lucide="lock" class="form-control-icon"></i>
-                                        <input type="password" placeholder="••••••••"
-                                            class="form-control form-control-with-icon" />
+                                        <input type="password" name="password" placeholder="••••••••"
+                                            class="form-control form-control-with-icon" required />
                                     </div>
                                 </div>
 
                                 <button type="submit" class="btn btn-primary btn-lg btn-glow form-submit"
                                     style="width: 100%;">
-                                    Sign In
-                                    <i data-lucide="log-in"></i>
+                                    Create Account
+                                    <i data-lucide="user-plus"></i>
                                 </button>
                             </form>
 
                             <div class="auth-form-footer">
-                                Don't have an account?
-                                <a href="signup.html" class="auth-form-link">Create Account</a>
+                                Already have an account?
+                                <a href="login.php" class="auth-form-link">Sign In</a>
                             </div>
                         </div>
                     </div>
@@ -143,7 +171,7 @@
             <div class="container">
                 <div class="footer-grid">
                     <div class="footer-about">
-                        <a href="index.html" class="footer-logo">
+                        <a href="index.php" class="footer-logo">
                             <div class="logo-icon">
                                 <img src="assets/images/Logo.png" alt="Logo">
                             </div>
@@ -153,33 +181,22 @@
                             Discover and manage extraordinary events with the most sophisticated platform for event
                             organizers and attendees.
                         </p>
-                        <div class="social-links">
-                            <a href="#" class="social-link btn-glass">
-                                <i data-lucide="facebook"></i>
-                            </a>
-                            <a href="#" class="social-link btn-glass">
-                                <i data-lucide="instagram"></i>
-                            </a>
-                            <a href="#" class="social-link btn-glass">
-                                <i data-lucide="linkedin"></i>
-                            </a>
-                        </div>
                     </div>
                     <div>
                         <h4 class="footer-heading">Platform</h4>
                         <nav class="footer-nav">
-                            <a href="info.html#about">About Us</a>
-                            <a href="events.html">Discover Events</a>
-                            <a href="register.html">Register Now</a>
-                            <a href="contact.html">Contact Support</a>
+                            <a href="info.php#about">About Us</a>
+                            <a href="events.php">Discover Events</a>
+                            <a href="register.php">Register Now</a>
+                            <a href="contact.php">Contact Support</a>
                         </nav>
                     </div>
                     <div>
                         <h4 class="footer-heading">Legal</h4>
                         <nav class="footer-nav">
-                            <a href="info.html#privacy">Privacy Policy</a>
-                            <a href="info.html#terms">Terms of Service</a>
-                            <a href="info.html#help">Help Center</a>
+                            <a href="info.php#privacy">Privacy Policy</a>
+                            <a href="info.php#terms">Terms of Service</a>
+                            <a href="info.php#help">Help Center</a>
                         </nav>
                     </div>
                 </div>
