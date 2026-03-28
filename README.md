@@ -37,3 +37,8 @@ This version upgrades the original frontend into a PHP + MySQL web application f
    - username: `root`
    - password: empty string
    - database: `eventmate_db`
+
+## Submission Notes
+- Push all files to GitHub
+- Include `database.sql`
+- Add your public GitHub repository link to LMS

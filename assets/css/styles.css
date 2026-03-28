@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
 
+html {
+  scroll-behavior: smooth;
+}
+
 :root {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Outfit", sans-serif;
@@ -1458,4 +1462,44 @@ textarea {
 
 .auth-form-link:hover {
   color: var(--color-brand-primary);
+}
+
+/* Info Section Styles */
+.info-section {
+  padding: 8rem 0; /* Matched to site-wide .section padding */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.info-section:first-of-type {
+  padding-top: 10rem; /* Extra padding to account for sticky header and match hero feel */
+}
+
+.info-section:last-child {
+  border-bottom: none;
+}
+
+.info-title {
+  font-size: 3.75rem; /* Matched to .page-title size */
+  font-weight: 800;
+  margin-bottom: 2rem;
+  letter-spacing: -0.05em;
+}
+
+.info-text {
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.8;
+  font-size: 1.125rem;
+  max-width: 42rem; /* Sync with site-wide .section-desc max-width */
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.info-card {
+  padding: 2rem;
+  border-radius: 1.5rem;
 }
