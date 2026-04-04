@@ -1,3 +1,10 @@
+<?php
+require_once 'includes/db.php';
+require_once 'includes/functions.php';
+
+init_session();
+$featured_events = get_featured_events($pdo, 3);
+?>
 <!doctype html>
 <html lang="en">
 
@@ -8,7 +15,6 @@
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="stylesheet" href="assets/css/styles.css" />
-    <script src="assets/js/events-data.js"></script>
 </head>
 
 <body>
@@ -18,29 +24,38 @@
         <header class="header glass">
             <div class="header-inner container">
                 <div class="header-left">
-                    <a href="index.html" class="logo">
+                    <a href="index.php" class="logo">
                         <div class="logo-icon">
                             <img src="assets/images/Logo.png" alt="Logo">
                         </div>
                         <span class="logo-text">EventMate</span>
                     </a>
                     <nav class="nav-links">
-                        <a href="index.html" class="nav-link active">Home</a>
-                        <a href="events.html" class="nav-link">Events</a>
-                        <a href="register.html" class="nav-link">Register</a>
-                        <a href="contact.html" class="nav-link">Contact</a>
+                        <a href="index.php" class="nav-link active">Home</a>
+                        <a href="events.php" class="nav-link">Events</a>
+                        <a href="register.php" class="nav-link">Register</a>
+                        <a href="contact.php" class="nav-link">Contact</a>
                     </nav>
                 </div>
                 <div class="header-right">
                     <button class="icon-btn">
                         <i data-lucide="bell"></i>
                     </button>
-                    <a href="login.html" class="icon-btn">
-                        <i data-lucide="user"></i>
-                    </a>
-                    <a href="signup.html" class="btn btn-primary header-cta">
-                        Get Started
-                    </a>
+                    <?php if (is_logged_in()): ?>
+                        <a href="dashboard.php" class="icon-btn" title="Dashboard">
+                            <i data-lucide="layout-dashboard"></i>
+                        </a>
+                        <a href="auth/logout.php" class="btn btn-primary header-cta">
+                            Logout
+                        </a>
+                    <?php else: ?>
+                        <a href="login.php" class="icon-btn" title="Login">
+                            <i data-lucide="user"></i>
+                        </a>
+                        <a href="signup.php" class="btn btn-primary header-cta">
+                            Get Started
+                        </a>
+                    <?php endif; ?>
                 </div>
             </div>
         </header>
@@ -66,11 +81,10 @@
                         Business events and social programs together in one place
                     </p>
                     <div class="hero-actions">
-                        <a href="events.html" class="btn btn-primary btn-lg btn-glow">
+                        <a href="events.php" class="btn btn-primary btn-lg btn-glow">
                             Explore Events
                             <i data-lucide="arrow-right"></i>
                         </a>
-
                     </div>
                 </div>
             </section>
@@ -120,14 +134,37 @@
                             gatherings of the season.
                         </p>
                     </div>
-                    <a href="events.html" class="section-link">
+                    <a href="events.php" class="section-link">
                         View All Events
                         <i data-lucide="arrow-right"></i>
                     </a>
                 </div>
 
                 <div class="events-grid">
-                    <!-- Featured Events dynamically rendered by script.js -->
+                    <?php foreach ($featured_events as $event): ?>
+                    <div class="event-card">
+                        <div class="event-img-wrapper">
+                            <img src="<?php echo $event['image']; ?>" alt="<?php echo $event['title']; ?>" class="event-img" referrerpolicy="no-referrer" />
+                            <div class="event-overlay"></div>
+                            <span class="event-tag btn-glass"><?php echo $event['category']; ?></span>
+                            <div class="event-info">
+                                <div class="event-date">
+                                    <span><i data-lucide="calendar"></i> <?php echo $event['event_date']; ?></span>
+                                </div>
+                                <h3 class="event-title"><?php echo $event['title']; ?></h3>
+                            </div>
+                        </div>
+                        <div class="event-footer">
+                            <div class="event-location">
+                                <i data-lucide="map-pin"></i>
+                                <span><?php echo $event['location']; ?></span>
+                            </div>
+                            <a href="register.php?event=<?php echo $event['id']; ?>" class="event-action glass">
+                                <i data-lucide="arrow-up-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <?php endforeach; ?>
                 </div>
             </section>
 
@@ -141,7 +178,7 @@
                             Join thousands of event enthusiasts and organizers. Sign up today and get exclusive access
                             to early-bird tickets and VIP experiences.
                         </p>
-                        <a href="signup.html" class="btn btn-primary btn-lg btn-glow">
+                        <a href="signup.php" class="btn btn-primary btn-lg btn-glow">
                             Join the Community
                             <i data-lucide="arrow-right"></i>
                         </a>
@@ -156,7 +193,7 @@
             <div class="container">
                 <div class="footer-grid">
                     <div class="footer-about">
-                        <a href="index.html" class="footer-logo">
+                        <a href="index.php" class="footer-logo">
                             <div class="logo-icon">
                                 <img src="assets/images/Logo.png" alt="Logo">
                             </div>
@@ -170,18 +207,18 @@
                     <div>
                         <h4 class="footer-heading">Platform</h4>
                         <nav class="footer-nav">
-                            <a href="info.html#about">About Us</a>
-                            <a href="events.html">Discover Events</a>
-                            <a href="register.html">Register Now</a>
-                            <a href="contact.html">Contact Support</a>
+                            <a href="info.php#about">About Us</a>
+                            <a href="events.php">Discover Events</a>
+                            <a href="register.php">Register Now</a>
+                            <a href="contact.php">Contact Support</a>
                         </nav>
                     </div>
                     <div>
                         <h4 class="footer-heading">Legal</h4>
                         <nav class="footer-nav">
-                            <a href="info.html#privacy">Privacy Policy</a>
-                            <a href="info.html#terms">Terms of Service</a>
-                            <a href="info.html#help">Help Center</a>
+                            <a href="info.php#privacy">Privacy Policy</a>
+                            <a href="info.php#terms">Terms of Service</a>
+                            <a href="info.php#help">Help Center</a>
                         </nav>
                     </div>
                 </div>
@@ -196,6 +233,12 @@
     </div>
 
     <script src="assets/js/script.js"></script>
+    <script>
+        // Initialize Lucide Icons again for dynamic content
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        }
+    </script>
 </body>
 
 </html>

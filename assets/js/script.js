@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function createEventCard(event, isCompact = true) {
         if (isCompact) {
             return `
-                <a href="register.html?event=${event.id}" class="event-card-compact" data-category="${event.category}" style="display: block;">
+                <a href="register.php?event=${event.id}" class="event-card-compact" data-category="${event.category}" style="display: block;">
                     <div class="event-img-compact">
                         <img src="${event.image}" alt="${event.title}" class="event-img" referrerpolicy="no-referrer" />
                         <div class="event-overlay"></div>
@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             <i data-lucide="map-pin"></i>
                             <span>${event.location}</span>
                         </div>
-                        <a href="register.html?event=${event.id}" class="event-action glass">
+                        <a href="register.php?event=${event.id}" class="event-action glass">
                             <i data-lucide="arrow-up-right"></i>
                         </a>
                     </div>
@@ -192,7 +192,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const navLinks = document.querySelectorAll('.nav-link');
     navLinks.forEach(link => {
         if (link.getAttribute('href') === currentPath || 
-           (currentPath.endsWith('/') && link.getAttribute('href') === 'index.html')) {
+           (currentPath.endsWith('/') && (link.getAttribute('href') === 'index.php' || link.getAttribute('href') === 'index.html'))) {
             link.classList.add('active');
         }
     });

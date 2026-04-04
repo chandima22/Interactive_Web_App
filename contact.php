@@ -1,3 +1,31 @@
+<?php
+require_once 'includes/db.php';
+require_once 'includes/functions.php';
+
+init_session();
+
+$success_msg = "";
+$error_msg = "";
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $first_name = sanitize($_POST['first_name'] ?? '');
+    $last_name = sanitize($_POST['last_name'] ?? '');
+    $email = sanitize($_POST['email'] ?? '');
+    $message = sanitize($_POST['message'] ?? '');
+
+    if (empty($first_name) || empty($last_name) || empty($email) || empty($message)) {
+        $error_msg = "Please fill in all fields.";
+    } else {
+        $full_name = $first_name . ' ' . $last_name;
+        $stmt = $pdo->prepare("INSERT INTO messages (name, email, message) VALUES (?, ?, ?)");
+        if ($stmt->execute([$full_name, $email, $message])) {
+            $success_msg = "Thank you! Your message has been sent successfully.";
+        } else {
+            $error_msg = "Oops! Something went wrong. Please try again later.";
+        }
+    }
+}
+?>
 <!doctype html>
 <html lang="en">
 
@@ -18,29 +46,38 @@
         <header class="header glass">
             <div class="header-inner container">
                 <div class="header-left">
-                    <a href="index.html" class="logo">
+                    <a href="index.php" class="logo">
                         <div class="logo-icon">
                             <img src="assets/images/Logo.png" alt="Logo">
                         </div>
                         <span class="logo-text">EventMate</span>
                     </a>
                     <nav class="nav-links">
-                        <a href="index.html" class="nav-link">Home</a>
-                        <a href="events.html" class="nav-link">Events</a>
-                        <a href="register.html" class="nav-link">Register</a>
-                        <a href="contact.html" class="nav-link active">Contact</a>
+                        <a href="index.php" class="nav-link">Home</a>
+                        <a href="events.php" class="nav-link">Events</a>
+                        <a href="register.php" class="nav-link">Register</a>
+                        <a href="contact.php" class="nav-link active">Contact</a>
                     </nav>
                 </div>
                 <div class="header-right">
                     <button class="icon-btn">
                         <i data-lucide="bell"></i>
                     </button>
-                    <a href="login.html" class="icon-btn">
-                        <i data-lucide="user"></i>
-                    </a>
-                    <a href="signup.html" class="btn btn-primary header-cta">
-                        Get Started
-                    </a>
+                    <?php if (is_logged_in()): ?>
+                        <a href="dashboard.php" class="icon-btn" title="Dashboard">
+                            <i data-lucide="layout-dashboard"></i>
+                        </a>
+                        <a href="auth/logout.php" class="btn btn-primary header-cta">
+                            Logout
+                        </a>
+                    <?php else: ?>
+                        <a href="login.php" class="icon-btn" title="Login">
+                            <i data-lucide="user"></i>
+                        </a>
+                        <a href="signup.php" class="btn btn-primary header-cta">
+                            Get Started
+                        </a>
+                    <?php endif; ?>
                 </div>
             </div>
         </header>
@@ -93,27 +130,39 @@
                             <h2 class="form-header-title">Send a Message</h2>
                         </div>
 
-                        <form>
+                        <?php if ($success_msg): ?>
+                            <div class="glass" style="padding: 1rem; border-radius: 1rem; border-left: 4px solid var(--color-brand-secondary); margin-bottom: 1.5rem;">
+                                <p style="color: var(--color-brand-secondary); font-weight: 600;"><?php echo $success_msg; ?></p>
+                            </div>
+                        <?php endif; ?>
+
+                        <?php if ($error_msg): ?>
+                            <div class="glass" style="padding: 1rem; border-radius: 1rem; border-left: 4px solid #ef4444; margin-bottom: 1.5rem;">
+                                <p style="color: #ef4444; font-weight: 600;"><?php echo $error_msg; ?></p>
+                            </div>
+                        <?php endif; ?>
+
+                        <form action="contact.php" method="POST">
                             <div class="form-row">
                                 <div class="form-group" style="margin-bottom: 0;">
                                     <label class="form-label">First Name</label>
-                                    <input type="text" placeholder="Jane" class="form-control" />
+                                    <input type="text" name="first_name" placeholder="Jane" class="form-control" required />
                                 </div>
                                 <div class="form-group" style="margin-bottom: 0;">
                                     <label class="form-label">Last Name</label>
-                                    <input type="text" placeholder="Doe" class="form-control" />
+                                    <input type="text" name="last_name" placeholder="Doe" class="form-control" required />
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label class="form-label">Email Address</label>
-                                <input type="email" placeholder="jane@example.com" class="form-control" />
+                                <input type="email" name="email" placeholder="jane@example.com" class="form-control" required />
                             </div>
 
                             <div class="form-group">
                                 <label class="form-label">Your Message</label>
-                                <textarea rows="6" placeholder="How can we help you today?"
-                                    class="form-control form-textarea"></textarea>
+                                <textarea name="message" rows="6" placeholder="How can we help you today?"
+                                    class="form-control form-textarea" required></textarea>
                             </div>
 
                             <button type="submit" class="btn btn-primary btn-lg btn-glow form-submit"
@@ -132,7 +181,7 @@
             <div class="container">
                 <div class="footer-grid">
                     <div class="footer-about">
-                        <a href="index.html" class="footer-logo">
+                        <a href="index.php" class="footer-logo">
                             <div class="logo-icon">
                                 <img src="assets/images/Logo.png" alt="Logo">
                             </div>
@@ -146,18 +195,18 @@
                     <div>
                         <h4 class="footer-heading">Platform</h4>
                         <nav class="footer-nav">
-                            <a href="info.html#about">About Us</a>
-                            <a href="events.html">Discover Events</a>
-                            <a href="register.html">Register Now</a>
-                            <a href="contact.html">Contact Support</a>
+                            <a href="info.php#about">About Us</a>
+                            <a href="events.php">Discover Events</a>
+                            <a href="register.php">Register Now</a>
+                            <a href="contact.php">Contact Support</a>
                         </nav>
                     </div>
                     <div>
                         <h4 class="footer-heading">Legal</h4>
                         <nav class="footer-nav">
-                            <a href="info.html#privacy">Privacy Policy</a>
-                            <a href="info.html#terms">Terms of Service</a>
-                            <a href="info.html#help">Help Center</a>
+                            <a href="info.php#privacy">Privacy Policy</a>
+                            <a href="info.php#terms">Terms of Service</a>
+                            <a href="info.php#help">Help Center</a>
                         </nav>
                     </div>
                 </div>

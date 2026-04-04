@@ -1,3 +1,42 @@
+<?php
+require_once 'includes/db.php';
+require_once 'includes/functions.php';
+
+init_session();
+
+$success_msg = "";
+$error_msg = "";
+
+// Handle form submission
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $full_name = sanitize($_POST['full_name'] ?? '');
+    $email = sanitize($_POST['email'] ?? '');
+    $event_id = $_POST['event_id'] ?? '';
+    $message = sanitize($_POST['message'] ?? '');
+    $user_id = is_logged_in() ? $_SESSION['user_id'] : null;
+
+    if (empty($full_name) || empty($email) || empty($event_id)) {
+        $error_msg = "Please fill in all required fields.";
+    } else {
+        $stmt = $pdo->prepare("INSERT INTO event_registrations (user_id, full_name, email, event_id, message) VALUES (?, ?, ?, ?, ?)");
+        if ($stmt->execute([$user_id, $full_name, $email, $event_id, $message])) {
+            $success_msg = "Registration successful! We have sent a confirmation email.";
+        } else {
+            $error_msg = "Something went wrong. Please try again.";
+        }
+    }
+}
+
+// Fetch events for dropdown
+$stmt = $pdo->query("SELECT id, title, image FROM events ORDER BY title ASC");
+$events = $stmt->fetchAll();
+
+// Pre-selected event from URL
+$url_event_id = $_GET['event'] ?? '';
+
+// Pass data to JS for image logic
+$events_json = json_encode($events);
+?>
 <!doctype html>
 <html lang="en">
 
@@ -8,7 +47,10 @@
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="stylesheet" href="assets/css/styles.css" />
-    <script src="assets/js/events-data.js"></script>
+    <script>
+        // Inject database events for image preview logic
+        window.eventsData = <?php echo $events_json; ?>;
+    </script>
 </head>
 
 <body>
@@ -19,29 +61,38 @@
         <header class="header glass">
             <div class="header-inner container">
                 <div class="header-left">
-                    <a href="index.html" class="logo">
+                    <a href="index.php" class="logo">
                         <div class="logo-icon">
                             <img src="assets/images/Logo.png" alt="Logo">
                         </div>
                         <span class="logo-text">EventMate</span>
                     </a>
                     <nav class="nav-links">
-                        <a href="index.html" class="nav-link">Home</a>
-                        <a href="events.html" class="nav-link">Events</a>
-                        <a href="register.html" class="nav-link active">Register</a>
-                        <a href="contact.html" class="nav-link">Contact</a>
+                        <a href="index.php" class="nav-link">Home</a>
+                        <a href="events.php" class="nav-link">Events</a>
+                        <a href="register.php" class="nav-link active">Register</a>
+                        <a href="contact.php" class="nav-link">Contact</a>
                     </nav>
                 </div>
                 <div class="header-right">
                     <button class="icon-btn">
                         <i data-lucide="bell"></i>
                     </button>
-                    <a href="login.html" class="icon-btn">
-                        <i data-lucide="user"></i>
-                    </a>
-                    <a href="signup.html" class="btn btn-primary header-cta">
-                        Get Started
-                    </a>
+                    <?php if (is_logged_in()): ?>
+                        <a href="dashboard.php" class="icon-btn" title="Dashboard">
+                            <i data-lucide="layout-dashboard"></i>
+                        </a>
+                        <a href="auth/logout.php" class="btn btn-primary header-cta">
+                            Logout
+                        </a>
+                    <?php else: ?>
+                        <a href="login.php" class="icon-btn" title="Login">
+                            <i data-lucide="user"></i>
+                        </a>
+                        <a href="signup.php" class="btn btn-primary header-cta">
+                            Get Started
+                        </a>
+                    <?php endif; ?>
                 </div>
             </div>
         </header>
@@ -55,30 +106,48 @@
                 </div>
 
                 <div class="contact-grid relative">
-                    <div style="z-index: 0;">
+                    <div style="z-index: 10;">
                         <h1 class="page-title" style="text-align: left; font-size: clamp(3rem, 5vw, 4.5rem); margin-bottom: 1rem;">Register For An <span
                                 class="text-gradient">Event</span></h1>
                         <p class="hero-desc" style="text-align: left; margin-left: 0;">Secure your spot at the most
                             anticipated events. Fill out the form below to register and receive your digital ticket
                             instantly.</p>
-                        <form>
+                        
+                        <?php if ($success_msg): ?>
+                            <div class="glass" style="padding: 1rem; border-radius: 1rem; border-left: 4px solid var(--color-brand-secondary); margin-bottom: 2rem;">
+                                <p style="color: var(--color-brand-secondary); font-weight: 600;"><?php echo $success_msg; ?></p>
+                            </div>
+                        <?php endif; ?>
+
+                        <?php if ($error_msg): ?>
+                            <div class="glass" style="padding: 1rem; border-radius: 1rem; border-left: 4px solid #ef4444; margin-bottom: 2rem;">
+                                <p style="color: #ef4444; font-weight: 600;"><?php echo $error_msg; ?></p>
+                            </div>
+                        <?php endif; ?>
+
+                        <form action="register.php" method="POST">
                             <div class="form-row">
                                 <div class="form-group">
                                     <label class="form-label">Full Name</label>
-                                    <input type="text" placeholder="John Doe" class="form-control" />
+                                    <input type="text" name="full_name" placeholder="John Doe" class="form-control" required 
+                                        value="<?php echo is_logged_in() ? $_SESSION['username'] : ''; ?>" />
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label">Email Address</label>
-                                    <input type="email" placeholder="john@example.com" class="form-control" />
+                                    <input type="email" name="email" placeholder="john@example.com" class="form-control" required />
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label class="form-label">Select Event</label>
                                 <div class="form-select-wrap">
-                                    <select class="form-control form-select" id="event-select" name="eventId" required>
+                                    <select class="form-control form-select" id="event-select" name="event_id" required>
                                         <option value="">Select an event</option>
-                                        <!-- Options populated via script.js -->
+                                        <?php foreach ($events as $event): ?>
+                                            <option value="<?php echo $event['id']; ?>" <?php echo ($url_event_id == $event['id']) ? 'selected' : ''; ?>>
+                                                <?php echo $event['title']; ?>
+                                            </option>
+                                        <?php endforeach; ?>
                                     </select>
                                     <i data-lucide="chevron-down" class="form-select-icon"
                                         style="width: 1.25rem; height: 1.25rem;"></i>
@@ -87,7 +156,7 @@
 
                             <div class="form-group">
                                 <label class="form-label">Additional Message</label>
-                                <textarea rows="5" placeholder="Tell us about any special requirements..."
+                                <textarea name="message" rows="5" placeholder="Tell us about any special requirements..."
                                     class="form-control form-textarea"></textarea>
                             </div>
 
@@ -133,7 +202,7 @@
             <div class="container">
                 <div class="footer-grid">
                     <div class="footer-about">
-                        <a href="index.html" class="footer-logo">
+                        <a href="index.php" class="footer-logo">
                             <div class="logo-icon">
                                 <img src="assets/images/Logo.png" alt="Logo">
                             </div>
@@ -147,18 +216,18 @@
                     <div>
                         <h4 class="footer-heading">Platform</h4>
                         <nav class="footer-nav">
-                            <a href="info.html#about">About Us</a>
-                            <a href="events.html">Discover Events</a>
-                            <a href="register.html">Register Now</a>
-                            <a href="info.html#support">Contact Support</a>
+                            <a href="info.php#about">About Us</a>
+                            <a href="events.php">Discover Events</a>
+                            <a href="register.php">Register Now</a>
+                            <a href="contact.php">Contact Support</a>
                         </nav>
                     </div>
                     <div>
                         <h4 class="footer-heading">Legal</h4>
                         <nav class="footer-nav">
-                            <a href="info.html#privacy">Privacy Policy</a>
-                            <a href="info.html#terms">Terms of Service</a>
-                            <a href="info.html#help">Help Center</a>
+                            <a href="info.php#privacy">Privacy Policy</a>
+                            <a href="info.php#terms">Terms of Service</a>
+                            <a href="info.php#help">Help Center</a>
                         </nav>
                     </div>
                 </div>
@@ -174,6 +243,18 @@
     </div>
 
     <script src="assets/js/script.js"></script>
+    <script>
+        // Update pre-selected image on load
+        window.addEventListener('load', () => {
+            const select = document.getElementById('event-select');
+            if (select && select.value) {
+                const event = window.eventsData.find(e => e.id == select.value);
+                if (event) {
+                    document.getElementById('register-event-image').src = event.image;
+                }
+            }
+        });
+    </script>
 </body>
 
 </html>

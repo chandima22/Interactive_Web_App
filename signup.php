@@ -1,3 +1,23 @@
+<?php
+require_once 'includes/functions.php';
+init_session();
+
+// Redirect if already logged in
+if (is_logged_in()) {
+    header("Location: dashboard.php");
+    exit();
+}
+
+$error = $_GET['error'] ?? '';
+$error_msg = "";
+if ($error === 'email_exists') {
+    $error_msg = "This email is already registered.";
+} elseif ($error === 'empty_fields') {
+    $error_msg = "Please fill in all fields.";
+} elseif ($error === 'execution_failed') {
+    $error_msg = "Something went wrong. Please try again.";
+}
+?>
 <!doctype html>
 <html lang="en">
 
@@ -18,27 +38,27 @@
         <header class="header glass">
             <div class="header-inner container">
                 <div class="header-left">
-                    <a href="index.html" class="logo">
+                    <a href="index.php" class="logo">
                         <div class="logo-icon">
                             <img src="assets/images/Logo.png" alt="Logo">
                         </div>
                         <span class="logo-text">EventMate</span>
                     </a>
                     <nav class="nav-links">
-                        <a href="index.html" class="nav-link">Home</a>
-                        <a href="events.html" class="nav-link">Events</a>
-                        <a href="register.html" class="nav-link">Register</a>
-                        <a href="contact.html" class="nav-link">Contact</a>
+                        <a href="index.php" class="nav-link">Home</a>
+                        <a href="events.php" class="nav-link">Events</a>
+                        <a href="register.php" class="nav-link">Register</a>
+                        <a href="contact.php" class="nav-link">Contact</a>
                     </nav>
                 </div>
                 <div class="header-right">
                     <button class="icon-btn">
                         <i data-lucide="bell"></i>
                     </button>
-                    <a href="login.html" class="icon-btn">
+                    <a href="login.php" class="icon-btn">
                         <i data-lucide="user"></i>
                     </a>
-                    <a href="signup.html" class="btn btn-primary header-cta">
+                    <a href="signup.php" class="btn btn-primary header-cta">
                         Get Started
                     </a>
                 </div>
@@ -104,15 +124,21 @@
                             <h2 style="font-size: 1.875rem; font-weight: 700; margin-bottom: 2.5rem;">Create Account
                             </h2>
 
-                            <form>
+                            <?php if ($error_msg): ?>
+                                <div class="glass" style="padding: 1rem; border-radius: 1rem; border-left: 4px solid #ef4444; margin-bottom: 1.5rem;">
+                                    <p style="color: #ef4444; font-weight: 600;"><?php echo $error_msg; ?></p>
+                                </div>
+                            <?php endif; ?>
+
+                            <form action="auth/register_handler.php" method="POST">
                                 <div class="form-row">
                                     <div class="form-group" style="margin-bottom: 0;">
                                         <label class="form-label">First Name</label>
-                                        <input type="text" placeholder="Jane" class="form-control" />
+                                        <input type="text" name="first_name" placeholder="Jane" class="form-control" required />
                                     </div>
                                     <div class="form-group" style="margin-bottom: 0;">
                                         <label class="form-label">Last Name</label>
-                                        <input type="text" placeholder="Doe" class="form-control" />
+                                        <input type="text" name="last_name" placeholder="Doe" class="form-control" required />
                                     </div>
                                 </div>
 
@@ -120,8 +146,8 @@
                                     <label class="form-label">Email Address</label>
                                     <div class="form-control-icon-wrap">
                                         <i data-lucide="mail" class="form-control-icon"></i>
-                                        <input type="email" placeholder="jane@example.com"
-                                            class="form-control form-control-with-icon" />
+                                        <input type="email" name="email" placeholder="jane@example.com"
+                                            class="form-control form-control-with-icon" required />
                                     </div>
                                 </div>
 
@@ -129,8 +155,8 @@
                                     <label class="form-label">Password</label>
                                     <div class="form-control-icon-wrap">
                                         <i data-lucide="lock" class="form-control-icon"></i>
-                                        <input type="password" placeholder="••••••••"
-                                            class="form-control form-control-with-icon" />
+                                        <input type="password" name="password" placeholder="••••••••"
+                                            class="form-control form-control-with-icon" required />
                                     </div>
                                 </div>
 
@@ -143,7 +169,7 @@
 
                             <div class="auth-form-footer">
                                 Already have an account?
-                                <a href="login.html" class="auth-form-link">Sign In</a>
+                                <a href="login.php" class="auth-form-link">Sign In</a>
                             </div>
                         </div>
                     </div>
@@ -156,7 +182,7 @@
             <div class="container">
                 <div class="footer-grid">
                     <div class="footer-about">
-                        <a href="index.html" class="footer-logo">
+                        <a href="index.php" class="footer-logo">
                             <div class="logo-icon">
                                 <img src="assets/images/Logo.png" alt="Logo">
                             </div>
@@ -170,18 +196,18 @@
                     <div>
                         <h4 class="footer-heading">Platform</h4>
                         <nav class="footer-nav">
-                            <a href="info.html#about">About Us</a>
-                            <a href="events.html">Discover Events</a>
-                            <a href="register.html">Register Now</a>
-                            <a href="contact.html">Contact Support</a>
+                            <a href="info.php#about">About Us</a>
+                            <a href="events.php">Discover Events</a>
+                            <a href="register.php">Register Now</a>
+                            <a href="contact.php">Contact Support</a>
                         </nav>
                     </div>
                     <div>
                         <h4 class="footer-heading">Legal</h4>
                         <nav class="footer-nav">
-                            <a href="info.html#privacy">Privacy Policy</a>
-                            <a href="info.html#terms">Terms of Service</a>
-                            <a href="info.html#help">Help Center</a>
+                            <a href="info.php#privacy">Privacy Policy</a>
+                            <a href="info.php#terms">Terms of Service</a>
+                            <a href="info.php#help">Help Center</a>
                         </nav>
                     </div>
                 </div>

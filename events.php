@@ -1,3 +1,13 @@
+<?php
+require_once 'includes/db.php';
+require_once 'includes/functions.php';
+
+init_session();
+$all_events = get_all_events($pdo);
+
+// Prepare data for JS
+$events_json = json_encode($all_events);
+?>
 <!doctype html>
 <html lang="en">
 
@@ -8,7 +18,10 @@
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="stylesheet" href="assets/css/styles.css" />
-    <script src="assets/js/events-data.js"></script>
+    <script>
+        // Inject database events into JS global scope
+        window.eventsData = <?php echo $events_json; ?>;
+    </script>
 </head>
 
 <body>
@@ -19,29 +32,38 @@
         <header class="header glass">
             <div class="header-inner container">
                 <div class="header-left">
-                    <a href="index.html" class="logo">
+                    <a href="index.php" class="logo">
                         <div class="logo-icon">
                             <img src="assets/images/Logo.png" alt="Logo">
                         </div>
                         <span class="logo-text">EventMate</span>
                     </a>
                     <nav class="nav-links">
-                        <a href="index.html" class="nav-link">Home</a>
-                        <a href="events.html" class="nav-link active">Events</a>
-                        <a href="register.html" class="nav-link">Register</a>
-                        <a href="contact.html" class="nav-link">Contact</a>
+                        <a href="index.php" class="nav-link">Home</a>
+                        <a href="events.php" class="nav-link active">Events</a>
+                        <a href="register.php" class="nav-link">Register</a>
+                        <a href="contact.php" class="nav-link">Contact</a>
                     </nav>
                 </div>
                 <div class="header-right">
                     <button class="icon-btn">
                         <i data-lucide="bell"></i>
                     </button>
-                    <a href="login.html" class="icon-btn">
-                        <i data-lucide="user"></i>
-                    </a>
-                    <a href="signup.html" class="btn btn-primary header-cta">
-                        Get Started
-                    </a>
+                    <?php if (is_logged_in()): ?>
+                        <a href="dashboard.php" class="icon-btn" title="Dashboard">
+                            <i data-lucide="layout-dashboard"></i>
+                        </a>
+                        <a href="auth/logout.php" class="btn btn-primary header-cta">
+                            Logout
+                        </a>
+                    <?php else: ?>
+                        <a href="login.php" class="icon-btn" title="Login">
+                            <i data-lucide="user"></i>
+                        </a>
+                        <a href="signup.php" class="btn btn-primary header-cta">
+                            Get Started
+                        </a>
+                    <?php endif; ?>
                 </div>
             </div>
         </header>
@@ -51,7 +73,7 @@
             <div class="page-header container">
                 <div class="hero-blobs">
                     <div class="blob blob-1 animate-pulse" style="top: -10%; right: -10%;"></div>
-                    <div class="blob blob-2 animate-pulse delay-700" style="bottom: -10%; left: -10%;"></div>
+                    <div class="blob blob-2 animate-pulse delay-700" style="bottom: -10%; right: -10%;"></div>
                 </div>
 
                 <div class="page-header-content">
@@ -94,10 +116,8 @@
 
                 <!-- Events Grid -->
                 <div class="events-grid-compact">
-                    <!-- Events dynamically rendered by script.js -->
+                    <!-- Events dynamically rendered by script.js using window.eventsData -->
                 </div>
-
-
             </div>
         </main>
 
@@ -106,7 +126,7 @@
             <div class="container">
                 <div class="footer-grid">
                     <div class="footer-about">
-                        <a href="index.html" class="footer-logo">
+                        <a href="index.php" class="footer-logo">
                             <div class="logo-icon">
                                 <img src="assets/images/Logo.png" alt="Logo">
                             </div>
@@ -120,18 +140,18 @@
                     <div>
                         <h4 class="footer-heading">Platform</h4>
                         <nav class="footer-nav">
-                            <a href="info.html#about">About Us</a>
-                            <a href="events.html">Discover Events</a>
-                            <a href="register.html">Register Now</a>
-                            <a href="contact.html">Contact Support</a>
+                            <a href="info.php#about">About Us</a>
+                            <a href="events.php">Discover Events</a>
+                            <a href="register.php">Register Now</a>
+                            <a href="contact.php">Contact Support</a>
                         </nav>
                     </div>
                     <div>
                         <h4 class="footer-heading">Legal</h4>
                         <nav class="footer-nav">
-                            <a href="info.html#privacy">Privacy Policy</a>
-                            <a href="info.html#terms">Terms of Service</a>
-                            <a href="info.html#help">Help Center</a>
+                            <a href="info.php#privacy">Privacy Policy</a>
+                            <a href="info.php#terms">Terms of Service</a>
+                            <a href="info.php#help">Help Center</a>
                         </nav>
                     </div>
                 </div>
