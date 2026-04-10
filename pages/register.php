@@ -106,7 +106,7 @@ $events_json = json_encode($events);
                                 <i data-lucide="user"></i>
                             </a>
                             <a href="signup.php" class="btn btn-primary px-4 fw-bold rounded-pill h-cta">
-                                Get Started
+                                CREATE
                             </a>
                         <?php endif; ?>
                     </div>

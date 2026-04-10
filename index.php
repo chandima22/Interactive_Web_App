@@ -69,7 +69,7 @@ $featured_events = get_featured_events($pdo, 4);
                                 <i data-lucide="user"></i>
                             </a>
                             <a href="pages/signup.php" class="btn btn-primary px-4 fw-bold rounded-pill h-cta">
-                                Get Started
+                             CREATE
                             </a>
                         <?php endif; ?>
                     </div>
@@ -99,25 +99,8 @@ $featured_events = get_featured_events($pdo, 4);
                                     <i data-lucide="arrow-right" class="ms-2"></i>
                                 </a>
                                 <a href="pages/signup.php" class="btn btn-outline-light btn-lg px-5 py-3 rounded-4 fw-bold bg-glass">
-                                    Get Started
+                                    CREATE
                                 </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Floating Right Content (Desktop Only) -->
-                <div class="hero-floating-right d-none d-lg-block z-10">
-                    <div class="hero-img-container">
-                        <img src="https://images.unsplash.com/photo-1540575861501-7ad05823c93b?auto=format&fit=crop&q=80&w=1200" 
-                            alt="Live Event" class="img-fluid rounded-5 shadow-2xl animate-float">
-                        <div class="hero-card-floating glass p-3 rounded-4 d-flex align-items-center gap-3">
-                            <div class="icon-box bg-primary-subtle text-primary p-2 rounded-3">
-                                <i data-lucide="ticket" style="width: 1.5rem; height: 1.5rem;"></i>
-                            </div>
-                            <div>
-                                <div class="fw-bold fs-5">1.2k+</div>
-                                <div class="small opacity-50">Tickets Sold Today</div>
                             </div>
                         </div>
                     </div>
@@ -156,7 +139,7 @@ $featured_events = get_featured_events($pdo, 4);
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4 col-sm-6 d-none d-md-flex">
+                        <div class="col-md-4 col-sm-6">
                             <div class="stat-card glass p-4 rounded-4 d-flex align-items-center gap-4 transition-transform text-white">
                                 <div class="stat-icon bg-warning-subtle p-3 rounded-4">
                                     <i data-lucide="trophy" class="text-warning" style="width: 2rem; height: 2rem;"></i>

@@ -77,7 +77,7 @@ $events_json = json_encode($all_events);
                                 <i data-lucide="user"></i>
                             </a>
                             <a href="signup.php" class="btn btn-primary px-4 fw-bold rounded-pill h-cta">
-                                Get Started
+                                CREATE
                             </a>
                         <?php endif; ?>
                     </div>
@@ -168,13 +168,6 @@ $events_json = json_encode($all_events);
                             <a href="info.php#terms" class="nav-link p-0 text-white-50">Terms of Service</a>
                             <a href="info.php#help" class="nav-link p-0 text-white-50">Help Center</a>
                         </nav>
-                    </div>
-                    <div class="col-lg-3 col-md-4">
-                        <h4 class="h6 fw-bold text-uppercase ls-wide mb-4 text-white">Connect</h4>
-                        <div class="d-flex gap-3">
-                            <a href="#" class="btn btn-outline-light sm rounded-circle" style="width: 40px; height: 40px; padding: 0; display: flex; align-items: center; justify-content: center;"><i data-lucide="twitter" style="width: 1.25rem;"></i></a>
-                            <a href="#" class="btn btn-outline-light sm rounded-circle" style="width: 40px; height: 40px; padding: 0; display: flex; align-items: center; justify-content: center;"><i data-lucide="instagram" style="width: 1.25rem;"></i></a>
-                        </div>
                     </div>
                 </div>
             </div>
