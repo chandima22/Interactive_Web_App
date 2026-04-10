@@ -48,6 +48,7 @@ $events_json = json_encode($events);
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="icon" type="image/png" href="../assets/images/Logo.png">
     <link rel="stylesheet" href="../assets/css/styles.css" />
     <script>
         // Inject database events for image preview logic
@@ -114,8 +115,8 @@ $events_json = json_encode($events);
         </nav>
 
         <!-- Main Content -->
-        <main class="main-content py-5">
-            <section class="container py-lg-5">
+        <main class="main-content py-4">
+            <section class="container py-lg-4">
                 <div class="row g-5 align-items-center position-relative">
                     <div class="hero-blobs position-absolute inset-0 z-0 opacity-10" style="pointer-events: none;">
                         <div class="blob-1"></div>
@@ -187,8 +188,8 @@ $events_json = json_encode($events);
                     </div>
 
                     <div class="col-lg-6 d-none d-lg-block">
-                        <div class="position-relative">
-                            <div class="rounded-5 overflow-hidden shadow-2xl position-relative" style="aspect-ratio: 4/5;">
+                        <div class="position-relative ms-lg-5">
+                            <div class="rounded-5 overflow-hidden shadow-2xl position-relative" style="aspect-ratio: 1/1;">
                                 <img id="register-event-image"
                                     src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&q=80&w=800"
                                     alt="Event Registration" class="w-100 h-100 object-fit-cover transition-opacity" style="transition: opacity 0.4s ease;" referrerpolicy="no-referrer" />

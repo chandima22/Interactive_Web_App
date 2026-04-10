@@ -37,6 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="icon" type="image/png" href="../assets/images/Logo.png">
     <link rel="stylesheet" href="../assets/css/styles.css" />
 </head>
 
@@ -126,7 +127,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                         <i data-lucide="phone" style="width: 1.5rem;"></i>
                                     </div>
                                     <div class="small fw-bold text-uppercase ls-wide opacity-50 mb-1">Call Us</div>
-                                    <div class="fw-medium">+1 (555) 000-0000</div>
+                                    <div class="fw-medium">+94700000000</div>
                                 </div>
                             </div>
                             <div class="col-sm-6">
@@ -135,7 +136,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                         <i data-lucide="map-pin" style="width: 1.5rem;"></i>
                                     </div>
                                     <div class="small fw-bold text-uppercase ls-wide opacity-50 mb-1">Visit Us</div>
-                                    <div class="fw-medium">San Francisco, CA</div>
+                                    <div class="fw-medium">colombo, sri lanka</div>
                                 </div>
                             </div>
                             <div class="col-sm-6">

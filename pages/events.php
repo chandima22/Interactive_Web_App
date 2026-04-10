@@ -19,6 +19,7 @@ $events_json = json_encode($all_events);
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="icon" type="image/png" href="../assets/images/Logo.png">
     <link rel="stylesheet" href="../assets/css/styles.css" />
     <script>
         // Inject database events into JS global scope
@@ -91,7 +92,7 @@ $events_json = json_encode($all_events);
                     <div class="blob-1 opacity-10"></div>
                 </div>
 
-                <div class="text-center py-5 position-relative z-10">
+                <div class="text-center py-3 position-relative z-10">
                     <h1 class="display-3 fw-bold mb-3 mt-4">
                         Discover <span class="text-gradient">Events</span>
                     </h1>

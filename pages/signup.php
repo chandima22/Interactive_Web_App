@@ -29,6 +29,7 @@ if ($error === 'email_exists') {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="icon" type="image/png" href="../assets/images/Logo.png">
     <link rel="stylesheet" href="../assets/css/styles.css" />
 </head>
 

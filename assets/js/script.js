@@ -117,10 +117,11 @@ document.addEventListener("DOMContentLoaded", () => {
     // --- Register Page Logic ---
     const eventSelect = document.getElementById('event-select');
     const registerImage = document.getElementById('register-event-image');
-    
+
     if (eventSelect && registerImage && window.eventsData) {
-        eventSelect.addEventListener('change', (e) => {
-            const selectedEvent = window.eventsData.find(evt => evt.id === e.target.value);
+        // Function to update image
+        const updateImage = (eventId) => {
+            const selectedEvent = window.eventsData.find(evt => evt.id == eventId);
             if (selectedEvent) {
                 registerImage.style.opacity = 0;
                 setTimeout(() => {
@@ -128,6 +129,16 @@ document.addEventListener("DOMContentLoaded", () => {
                     registerImage.style.opacity = 1;
                 }, 200);
             }
+        };
+
+        // Initialize on load
+        if (eventSelect.value) {
+            updateImage(eventSelect.value);
+        }
+
+        // Handle changes
+        eventSelect.addEventListener('change', (e) => {
+            updateImage(e.target.value);
         });
     }
 
