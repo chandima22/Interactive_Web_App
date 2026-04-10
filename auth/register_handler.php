@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Simple validation
     if (empty($first_name) || empty($last_name) || empty($email) || empty($password)) {
-        header("Location: ../signup.php?error=empty_fields");
+        header("Location: ../pages/signup.php?error=empty_fields");
         exit();
     }
 
@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt = $pdo->prepare("SELECT * FROM users WHERE email = ?");
     $stmt->execute([$email]);
     if ($stmt->fetch()) {
-        header("Location: ../signup.php?error=email_exists");
+        header("Location: ../pages/signup.php?error=email_exists");
         exit();
     }
 
@@ -36,14 +36,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Automatically log in user after signup
         $_SESSION['user_id'] = $pdo->lastInsertId();
         $_SESSION['username'] = $username;
-        header("Location: ../dashboard.php?success=signup");
+        header("Location: ../pages/dashboard.php?success=signup");
         exit();
     } else {
-        header("Location: ../signup.php?error=execution_failed");
+        header("Location: ../pages/signup.php?error=execution_failed");
         exit();
     }
 } else {
-    header("Location: ../signup.php");
+    header("Location: ../pages/signup.php");
     exit();
 }
 ?>

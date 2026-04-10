@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Simple validation
     if (empty($email) || empty($password)) {
-        header("Location: ../login.php?error=empty_fields");
+        header("Location: ../pages/login.php?error=empty_fields");
         exit();
     }
 
@@ -23,14 +23,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Log in user on valid password
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['username'] = $user['username'];
-        header("Location: ../dashboard.php");
+        header("Location: ../pages/dashboard.php");
         exit();
     } else {
-        header("Location: ../login.php?error=invalid_credentials");
+        header("Location: ../pages/login.php?error=invalid_credentials");
         exit();
     }
 } else {
-    header("Location: ../login.php");
+    header("Location: ../pages/login.php");
     exit();
 }
 ?>

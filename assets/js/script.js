@@ -1,131 +1,112 @@
 document.addEventListener("DOMContentLoaded", () => {
     // Initialize Lucide Icons
-    if (typeof lucide !== 'undefined') {
-        lucide.createIcons();
-    }
+    const initIcons = () => {
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        }
+    };
+    initIcons();
 
-    // --- Dynamic Event Rendering ---
-    const eventsGrid = document.querySelector('.events-grid-compact');
-    const featuredGrid = document.querySelector('.events-grid'); // On index.html
-    const filterButtons = document.querySelectorAll('.filter-tag');
-    const searchInput = document.querySelector('.search-input');
-
+    // --- State Management ---
     let currentCategory = 'All';
     let currentSearch = '';
 
-    function createEventCard(event, isCompact = true) {
-        if (isCompact) {
-            return `
-                <a href="register.php?event=${event.id}" class="event-card-compact" data-category="${event.category}" style="display: block;">
-                    <div class="event-img-compact">
-                        <img src="${event.image}" alt="${event.title}" class="event-img" referrerpolicy="no-referrer" />
-                        <div class="event-overlay"></div>
-                        <span class="event-tag" style="font-size: 0.625rem;">${event.category}</span>
-                    </div>
-                    <h3 class="event-title-compact">${event.title}</h3>
-                    <div class="event-meta">
-                        <span>
-                            <i data-lucide="calendar" style="width: 1rem; height: 1rem; color: var(--color-brand-primary);"></i>
-                            ${event.date}
-                        </span>
-                        <span>
-                            <i data-lucide="map-pin" style="width: 1rem; height: 1rem; color: var(--color-brand-primary);"></i>
-                            ${event.location}
-                        </span>
-                    </div>
-                </a>
-            `;
-        } else {
-            // Main style for Featured Events on index.html
-            return `
-                <div class="event-card">
-                    <div class="event-img-wrapper">
-                        <img src="${event.image}" alt="${event.title}" class="event-img" referrerpolicy="no-referrer" />
-                        <div class="event-overlay"></div>
-                        <span class="event-tag btn-glass">${event.category}</span>
-                        <div class="event-info">
-                            <div class="event-date">
-                                <span><i data-lucide="calendar"></i> ${event.date}</span>
-                            </div>
-                            <h3 class="event-title">${event.title}</h3>
-                        </div>
-                    </div>
-                    <div class="event-footer">
-                        <div class="event-location">
-                            <i data-lucide="map-pin"></i>
-                            <span>${event.location}</span>
-                        </div>
-                        <a href="register.php?event=${event.id}" class="event-action glass">
-                            <i data-lucide="arrow-up-right"></i>
-                        </a>
-                    </div>
-                </div>
-            `;
-        }
-    }
+    const eventsContainer = document.getElementById('events-container');
+    const searchInput = document.querySelector('.search-input');
+    const filterButtons = document.querySelectorAll('.filter-tag');
 
-    function renderEvents() {
-        if (!eventsGrid || !window.eventsData) return;
-        
-        eventsGrid.innerHTML = '';
-        
-        const filtered = window.eventsData.filter(event => {
-            const matchesCategory = currentCategory === 'All' || event.category === currentCategory;
-            const matchesSearch = event.title.toLowerCase().includes(currentSearch.toLowerCase()) || 
-                                event.location.toLowerCase().includes(currentSearch.toLowerCase());
-            return matchesCategory && matchesSearch;
-        });
-        
-        if (filtered.length === 0) {
-            eventsGrid.innerHTML = `
-                <div style="grid-column: 1/-1; text-align: center; padding: 4rem 2rem; color: rgba(255,255,255,0.5);">
-                    <i data-lucide="search-x" style="width: 3rem; height: 3rem; margin-bottom: 1rem; display: block; margin-inline: auto;"></i>
-                    <p style="font-size: 1.125rem;">No events found matching "${currentSearch}"</p>
+    // --- Components ---
+    const createSpinner = () => `
+        <div class="col-12 text-center py-5 my-5">
+            <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <p class="mt-3 opacity-50">Finding amazing events...</p>
+        </div>
+    `;
+
+    const createNoResults = (query) => `
+        <div class="col-12 text-center py-5 my-5 opacity-50">
+            <i data-lucide="search-x" style="width: 4rem; height: 4rem;" class="mb-3"></i>
+            <h3 class="h4">No events found</h3>
+            <p>We couldn't find anything matching "${query}"</p>
+        </div>
+    `;
+
+    const createEventCard = (event) => `
+        <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card h-100 border-0 bg-transparent overflow-hidden h-card shadow-lg rounded-4">
+                <div class="position-relative overflow-hidden" style="aspect-ratio: 4/5;">
+                    <img src="${event.image}" class="card-img-top h-100 object-fit-cover transition-scale" alt="${event.title}" referrerpolicy="no-referrer">
+                    <div class="position-absolute top-0 start-0 w-100 h-100 bg-gradient-to-t opacity-25"></div>
+                    <span class="badge position-absolute bg-glass rounded-pill px-3 py-2 text-uppercase fw-bold" style="font-size: 0.65rem; top: 1.5rem; left: 1.5rem;">
+                        ${event.category}
+                    </span>
                 </div>
-            `;
-        } else {
-            filtered.forEach(event => {
-                eventsGrid.innerHTML += createEventCard(event, true);
+                <div class="card-body px-1 py-4">
+                    <h3 class="h5 fw-bold mb-3 text-white">${event.title}</h3>
+                    
+                    <div class="d-flex flex-column gap-2 mb-4">
+                        <div class="d-flex align-items-center gap-2 text-white-50 small fw-medium">
+                            <i data-lucide="calendar" style="width: 1rem;"></i>
+                            ${event.event_date}
+                        </div>
+                        <div class="d-flex align-items-center gap-2 text-white-50 small fw-medium">
+                            <i data-lucide="clock" style="width: 1rem;"></i>
+                            09:00 AM - 05:00 PM
+                        </div>
+                        <div class="d-flex align-items-center gap-2 text-white-50 small fw-medium">
+                            <i data-lucide="map-pin" style="width: 1rem;"></i>
+                            <span class="text-truncate">${event.location}</span>
+                        </div>
+                    </div>
+
+                    <a href="register.php?event=${event.id}" class="btn btn-primary w-100 rounded-3 py-2 fw-bold d-flex align-items-center justify-content-center gap-2">
+                        Register Now
+                        <i data-lucide="arrow-right" style="width: 1.25rem;"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    `;
+
+    // --- Core Logic ---
+    const renderEvents = () => {
+        if (!eventsContainer || !window.eventsData) return;
+
+        // Show spinner during "filtering" (simulated delay for UX)
+        eventsContainer.innerHTML = createSpinner();
+        initIcons();
+
+        setTimeout(() => {
+            const filtered = window.eventsData.filter(event => {
+                const matchesCategory = currentCategory === 'All' || event.category === currentCategory;
+                const matchesSearch = event.title.toLowerCase().includes(currentSearch.toLowerCase()) || 
+                                    event.location.toLowerCase().includes(currentSearch.toLowerCase());
+                return matchesCategory && matchesSearch;
             });
-        }
-        
-        // Re-create icons for new elements
-        if (typeof lucide !== 'undefined') {
-            lucide.createIcons();
-        }
-    }
 
-    function renderFeaturedEvents() {
-        if (!featuredGrid || !window.eventsData) return;
-        
-        featuredGrid.innerHTML = '';
-        // Take a few prominent ones
-        const featured = window.eventsData.filter(e => 
-            e.id === "spor-5" || e.id === "cult-2" || e.id === "bus-3"
-        );
-        
-        featured.forEach(event => {
-            featuredGrid.innerHTML += createEventCard(event, false);
-        });
+            if (filtered.length === 0) {
+                eventsContainer.innerHTML = createNoResults(currentSearch);
+            } else {
+                eventsContainer.innerHTML = filtered.map(e => createEventCard(e)).join('');
+            }
+            initIcons();
+        }, 400);
+    };
 
-        if (typeof lucide !== 'undefined') {
-            lucide.createIcons();
-        }
-    }
-
-    // Event Listeners for Filters
-    if (filterButtons.length > 0) {
+    // --- Event Listeners ---
+    if (filterButtons) {
         filterButtons.forEach(btn => {
             btn.addEventListener('click', () => {
                 filterButtons.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
-                currentCategory = btn.textContent;
+                currentCategory = btn.dataset.category || 'All';
                 renderEvents();
             });
         });
     }
 
-    // Event Listener for Search
     if (searchInput) {
         searchInput.addEventListener('input', (e) => {
             currentSearch = e.target.value;
@@ -133,67 +114,24 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Initial Renders
-    if (window.eventsData) {
-        renderEvents();
-        renderFeaturedEvents();
-    }
-
     // --- Register Page Logic ---
     const eventSelect = document.getElementById('event-select');
     const registerImage = document.getElementById('register-event-image');
     
     if (eventSelect && registerImage && window.eventsData) {
-        // Populate select
-        eventSelect.innerHTML = '<option value="">Select an event</option>';
-        window.eventsData.forEach(event => {
-            const option = document.createElement('option');
-            option.value = event.id;
-            option.textContent = event.title;
-            eventSelect.appendChild(option);
-        });
-
-        // Parse URL params
-        const urlParams = new URLSearchParams(window.location.search);
-        const eventIdFromUrl = urlParams.get('event');
-        
-        function updateRegisterImage(eventId) {
-            if (!eventId) {
-                registerImage.style.opacity = 0;
-                setTimeout(() => {
-                    registerImage.src = 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&q=80&w=800'; // default image
-                    registerImage.style.opacity = 1;
-                }, 300);
-                return;
-            }
-            const selectedEvent = window.eventsData.find(e => e.id === eventId);
+        eventSelect.addEventListener('change', (e) => {
+            const selectedEvent = window.eventsData.find(evt => evt.id === e.target.value);
             if (selectedEvent) {
-                // Add a smooth fade transition effect
                 registerImage.style.opacity = 0;
                 setTimeout(() => {
                     registerImage.src = selectedEvent.image;
                     registerImage.style.opacity = 1;
-                }, 300);
+                }, 200);
             }
-        }
-
-        if (eventIdFromUrl) {
-            eventSelect.value = eventIdFromUrl;
-            updateRegisterImage(eventIdFromUrl);
-        }
-
-        eventSelect.addEventListener('change', (e) => {
-            updateRegisterImage(e.target.value);
         });
     }
 
-    // --- Original Nav Logic ---
-    const currentPath = window.location.pathname;
-    const navLinks = document.querySelectorAll('.nav-link');
-    navLinks.forEach(link => {
-        if (link.getAttribute('href') === currentPath || 
-           (currentPath.endsWith('/') && (link.getAttribute('href') === 'index.php' || link.getAttribute('href') === 'index.html'))) {
-            link.classList.add('active');
-        }
-    });
+    // Initialize
+    if (eventsContainer) renderEvents();
 });
+
